@@ -1,0 +1,16 @@
+function fixedFooter() {
+	var footer = jQuery('.footer');
+	if (footer.length) {
+		var height = jQuery(window).height() - footer.position().top - footer.innerHeight();
+		if (height > 0) {
+			footer.css({
+				'margin-top': height + 'px'
+			});
+		}
+	}
+}
+
+
+
+
+fixedFooter();

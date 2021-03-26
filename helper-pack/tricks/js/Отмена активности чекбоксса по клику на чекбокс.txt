@@ -1,0 +1,10 @@
+$('.notification-ways').on('click', 'label', function() {
+		var _target = 'DOrder_models_CustomerForm_notification_3';
+		if($(this).attr('for') == _target) {
+			$(this).siblings('input[type="checkbox"]').not('input[id="' + _target +'"]').prop('checked', false);
+		}
+
+		if ($(this).attr('for') != _target) {
+			$('input[id="' + _target +'"]').prop('checked', false);
+		}
+	});

@@ -1,0 +1,51 @@
+0 сменить на хостинге на php 7.2 минимум
+
+1 создать базу на хостинге
+
+Пример:
+db
+procomfort_inmir
+soJ6CfPrfnXM
+
+2 удалить index.html  в корне
+
+3 загурзить на сервер скрипт C:\CMS\dishcms-packs\Утилиты bash.php
+
+4 выполнить соответствующую команду в зависимости от редакции в /bash.php
+
+wget https://www.1c-bitrix.ru/download/standard_encode.tar.gz -O - | tar -xz
+wget https://www.1c-bitrix.ru/download/small_business_encode.tar.gz -O - | tar -xz
+wget https://www.1c-bitrix.ru/download/business_encode.tar.gz -O - | tar -xz
+wget https://www.1c-bitrix.ru/download/start_encode.tar.gz  -O - | tar -xz
+
+5 ВАЖНО! удалсит скрипт bash.php после звершения!
+
+6 добавить в .htaccess в раздел <IfModule mod_php7.c>
+php_value mbstring.func_overload 2
+php_value mbstring.internal_encoding utf-8
+php_value max_input_vars 10000
+
+7 начать установку:  Установить в кодировке UTF-8 - обязательно проверить!
+
+8 после шага "создание администратора" перейти в раздел /bitrix
+
+9 в разделе администрирования перейти в marketplace в обновления платформы
+
+10 Активировать лицензию
+
+11 Установить последние обновления
+
+12 Добавить доступы в файл доступов excel
+
+Пример:
+Доступ в раздел администрирования: 
+Логин: admin
+Пароль: KsW?%Xyf|HjB
+
+Учетная запись на сайте 1c-bitrix.ru:
+Логин: in_mir_ru
+Пароль: 42h$FvKkMMfJ
+
+13 Активаровать купон
+
+14 Перейти в публичку и "Выберите решение для установки" -> загрузить из маркетплейс

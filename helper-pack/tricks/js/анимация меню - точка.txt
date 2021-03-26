@@ -1,0 +1,73 @@
+.main-nav {
+    position: relative;
+}
+
+.animate-dot {
+    position: absolute;
+    top: 20px;
+    left: 93.8281px;
+    box-sizing: border-box;
+    width: 10px;
+    height: 10px;
+    background-color: #5FB829;
+    border-radius: 50%;
+    opacity: 1;
+    transition: left .6s, opacity .6s;
+    transition-timing-function: cubic-bezier(.68, -0.55, .265, 1.55);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: left, opacity, box-shadow;
+}
+========================
+function n(e) {
+		return e.position().left + e.width() + 5;
+	}
+
+	var e = $('.main-nav');
+
+	$(".main-nav > ul").after("<div class='animate-dot'></div>");
+
+	var t = e.find("> ul > li"),
+		i = e.find("> .animate-dot"),
+		r = t.find("a"),
+		o = null,
+		a = e.find("> ul > li.active");
+
+	t.on("click.navigation", function (e) {
+		a = $(this),
+			o = o && clearTimeout(o),
+			t.removeClass("active"),
+			a.addClass("active"),
+			i.css({
+				opacity: 1,
+				left: n(a)
+			})
+	});
+
+	r.on("focus.navigation", function (e) {
+		$(this).parent().triggerHandler("mouseenter.navigation");
+	}).on("blur.navigation", function (e) {
+		$(this).parent().triggerHandler("mouseleave.navigation");
+	});
+
+	t.on("mouseenter.navigation", function (e) {
+		var t = $(this);
+		o = o && clearTimeout(o),
+			i.css({
+				opacity: 1,
+				left: n(t)
+			})
+	}).on("mouseleave.navigation", function () {
+		o = setTimeout(function () {
+			a.length ? i.css({
+				opacity: 1,
+				left: n(a)
+			}) : i.css({
+				opacity: 0
+			})
+		}, 400);
+	});
+
+	$(window).load(function () {
+		e.find('.active').triggerHandler("mouseenter.navigation");
+	});

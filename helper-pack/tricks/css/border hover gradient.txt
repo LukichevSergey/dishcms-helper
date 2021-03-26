@@ -1,0 +1,37 @@
+&>li {
+                margin: 0 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &>a {
+                    padding: 10px 20px;
+                    color: @theme1;
+                    background-color: #fff;
+                    border-radius: 25px;
+                    position: relative;
+                    transition: .3s all;
+                    &::after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        left: -3px;
+                        top: -3px;
+                        width: ~'calc(100% + 6px)';
+                        height: ~'calc(100% + 6px)';
+                        box-shadow: none;
+                        border-radius: 25px;
+                        z-index: -1;
+                        transition: .3s all;
+                    }
+                }
+
+                &>a:hover::after {
+                    box-shadow: inset 8px 0 10px -1px @theme1,
+                        inset -8px 0 10px -3px lighten(@theme1, 50%);
+                }
+            }
+
+            &>li.active > a:after {
+                box-shadow: inset 8px 0 10px -1px @theme1,
+                        inset -8px 0 10px -3px lighten(@theme1, 50%);
+            }

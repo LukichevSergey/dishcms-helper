@@ -1,0 +1,10 @@
+$(window).scroll(function() {
+    if($(this).scrollTop() > 1500) {
+    $('#scrollUp').fadeIn();
+    } else {
+    $('#scrollUp').fadeOut();
+    }
+  });
+  $('#scrollUp').click(function() {
+  	$('body,html').animate({scrollTop:0},800);
+  });

@@ -1,0 +1,7 @@
+<script>
+		$(function() {
+			$('img').each(function () {
+				$(this).attr('oncontextmenu', 'return false');
+			});
+		})
+	</script>

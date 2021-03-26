@@ -1,0 +1,20 @@
+// фиксируем меню при скроле
+var navigation = $('.shop-menu');
+var wrap = $('.shop-container__left');
+
+$(window).scroll(function () {
+	if ($(window).width() > 1200) {
+		var nsc = $(document).scrollTop(),
+			bp1 = wrap.offset().top;
+		console.log(nsc, bp1);
+		if (nsc > bp1) {
+			navigation.css({
+				'position': 'fixed',
+				'top': 0
+			});
+		} else {
+			navigation.css('position', 'initial');
+		}
+	}
+
+});

@@ -1,0 +1,26 @@
+//счётчик в корзине
+	var body = jQuery('body');
+
+	body.on('click', '.counter-number_minus', function () {
+		var inp_data = jQuery(this).parent('.counter-number').find('input.counter-backet_input');
+		var data = parseInt(inp_data.val());
+		if (data > 1) var new_data = data - 1;
+		if (new_data == 0 || !(!!(new_data))) new_data = inp_data.attr('min');
+		inp_data.val(new_data).trigger('change');
+
+		if(jQuery('.additive').hasClass('active-add') && new_data == 0) {
+			inp_data.closest('.additive').removeClass('active-add');
+		}
+		
+	});
+
+	body.on('click', '.counter-number_plus', function () {
+		var inp_data = jQuery(this).parent('.counter-number').find('input.counter-backet_input');
+		var data = parseInt(inp_data.val());
+		var new_data = data + 1;
+		inp_data.val(new_data).trigger('change');
+
+		if(new_data > 0) {
+			inp_data.closest('.additive').addClass('active-add');
+		}
+	});

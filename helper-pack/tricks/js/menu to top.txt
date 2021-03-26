@@ -1,0 +1,9 @@
+var nav = jQuery('.mobile-menu');
+
+    jQuery(window).scroll(function () {
+        if (jQuery(this).scrollTop() > 500) {
+            nav.addClass("appear-menu");
+        } else {
+            nav.removeClass("appear-menu");
+        }
+    });

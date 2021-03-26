@@ -1,0 +1,38 @@
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=8e4ea6c6-43ee-4c85-9534-5379946823e6" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            ymaps.ready(init);
+
+            function init() {
+                // Создание карты.
+                var myMap = new ymaps.Map('myYMap', {
+                    center: [55.07018744, 82.04419588],
+                    zoom: 16
+                }, {
+                    searchControlProvider: 'yandex#search'
+                })
+
+                MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+                    '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+                ),
+
+                myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+                    hintContent: 'ПОРТ | Придорожный комплекс'
+                }, {
+                    iconLayout: 'default#image',
+                    iconImageHref: '/images/icon/map.png',
+                    iconImageSize: [268, 155],
+                    iconImageOffset: [-268, -155]
+                });
+
+                myMap.geoObjects
+                    .add(myPlacemark);
+            }
+        })
+    </script>
+
+
+
+
+
+<div id="myYMap" style="width: 100%; height: 475px;" class="ymap"></div>

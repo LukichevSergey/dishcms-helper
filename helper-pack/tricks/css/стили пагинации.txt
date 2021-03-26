@@ -1,0 +1,121 @@
+
+// ============== Pagination ==================
+
+ul.yiiPager {
+	font-size: 14px;
+	display: block;
+	padding: 20px 0 !important;
+	display: flex;
+	justify-content: center;
+
+	a {
+		text-decoration: none;
+		border: none !important;
+		font-family: 'Roboto Slab';
+		font-weight: bold;
+		font-size: 22px;
+		width: 40px;
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		border-radius: 5px;
+		background-color: #EAF6D7;
+
+		&:link,
+		&:visited {
+			display: inline-block;
+			font-weight: normal;
+			color: #1F4A04;
+		}
+
+		&:hover {
+			background: #5FB829;
+			color: #fff;
+			//border: 1px solid #9aafe5 !important;
+		}
+	}
+
+	.page a {
+		display: inline-block;
+	}
+
+	.hidden a {
+		cursor: default;
+		border: none !important;
+		color: #888 !important;
+		background-color: @paginationColor;
+		pointer-events: none;
+	}
+
+	.selected a {
+		color: inherit;
+		background: #5fb829;
+		font-weight: normal;
+		color: #fff;
+	}
+
+	li {
+		display: inline-block;
+		margin: 0 5px;
+
+		&.previous a {
+			font-size: 0;
+			position: relative;
+
+			&::after {
+				content: '\25c2';
+				position: absolute;
+				left: 0;
+				top: 0;
+				font-size: 30px;
+				color: #1F4A04;
+				font-family: 'Fontello';
+				width: 100%;
+				text-align: center;
+				height: 100%;
+				line-height: 40px;
+				transition: .3s all;
+			}
+
+			&:hover::after {
+				color: #fff;
+			}
+		}
+
+		&.previous.hidden a::after {
+			color: #888;
+		}
+
+		&.next a {
+			font-size: 0;
+			position: relative;
+
+			&::after {
+				content: '\25b8';
+				position: absolute;
+				left: 0;
+				top: 0;
+				font-size: 30px;
+				color: #1F4A04;
+				font-family: 'Fontello';
+				width: 100%;
+				text-align: center;
+				height: 100%;
+				line-height: 40px;
+				transition: .3s all;
+			}
+
+			&:hover::after {
+				color: #fff;
+			}
+		}
+
+		&.next.hidden a::after {
+			color: #888;
+		}
+	}
+}
+
+.mfp-close {
+	color: #840000 !important;
+}

@@ -1,0 +1,16 @@
+jQuery('.ingridient').click(function() {
+        var id = jQuery(this).data('id'),
+            item = jQuery('.accordion-item');
+
+            jQuery('.ingridient[data-id="' + id + '"]').next().slideToggle(500);
+    });
+
+
+.data('id') - возвращает число, которое лежив в атрибуте data-id="___"
+
+<div class="ingridient" data-id="<?= $dataId ?>"></div>
+
+
+
+jQuery('.ingridient') - элемент по которому кликаем
+

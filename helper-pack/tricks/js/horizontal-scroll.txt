@@ -1,0 +1,3 @@
+if($('.cinema-date-box').length && $('.cinema-week .active').length) {
+	$('.cinema-date-box').animate({scrollLeft:  $('.cinema-week .active').offset().left - 100}, 100);
+}

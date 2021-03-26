@@ -1,0 +1,82 @@
+<button class="burger"></button>
+<div class="toggle-menu drop-up">
+	<button class="close-btn"><img src="/images/close.svg" alt=""></button>
+	<?php
+		$this->widget('zii.widgets.CMenu', array(
+		'items' => $this->menu,
+		'htmlOptions' => array('class' => 'my-menu'),
+		));
+	?>
+</div>
+
+
+
+.toggle-menu {
+		position: fixed;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		padding: 20px;
+		background: url(/images/bg-menu.jpg) repeat-y 50% 0%;
+		background-size: contain;
+		z-index: 1000;
+		list-style: none;
+		
+		ul {
+			list-style: none;
+			padding-left: 25px;
+
+			a {
+				font-family: Georgia;
+				font-style: italic;
+				font-weight: bold;
+				height: 44px;
+				font-size: 16px;
+				line-height: 44px;
+				letter-spacing: 0.05em;
+				color: #fff;
+				position: relative;
+				text-decoration: none;
+				padding-left: 45px;
+				display: block;
+			}
+		}
+	}
+
+	.drop-up {
+		top: -100%;
+		transition: .7s;
+	}
+
+	.drop-down {
+		top: 0%;
+		transition: .7s;
+	}
+
+	.close-btn {
+		border: none;
+		background-color: #A8120A;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 40px;
+		height: 35px;
+		margin-left: auto;
+	}
+
+
+
+$('.burger').click(function() {
+        if($('.toggle-menu').hasClass('drop-up')) {
+            $('.toggle-menu').removeClass('drop-up').addClass('drop-down');
+        }
+    });
+
+    $('.close-btn').click(function() {
+        if($('.toggle-menu').hasClass('drop-down')) {
+            $('.toggle-menu').removeClass('drop-down').addClass('drop-up');
+        }
+    });
+
+
+

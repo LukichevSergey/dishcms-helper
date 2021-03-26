@@ -1,0 +1,39 @@
+.breadcrumbs {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 0;
+
+    li,
+    &>div {
+        display: inline-block;
+
+        &::after {
+            content: "/";
+            margin: 0 8px;
+        }
+
+        &:last-child::after {
+            content: "";
+        }
+
+        a span {
+            color: #E30016 !important;
+            transition: .3s all;
+
+            &:hover {
+                color: #a50b1b !important;
+            }
+        }
+
+        span {
+            color: #444;
+        }
+
+        a,
+        span {
+            font-size: 13px;
+            line-height: 16px;
+        }
+    }
+}

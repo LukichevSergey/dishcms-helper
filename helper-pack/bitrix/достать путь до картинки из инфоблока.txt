@@ -1,0 +1,20 @@
+https://dev.1c-bitrix.ru/api_help/main/reference/cfile/getfilearray.php
+
+//Покажем изображение анонса элемента инфоблока
+//$ELEMENT_ID - идентификатор этого элемента
+if(CModule::IncludeModule('iblock'))
+{
+  $rsElement = CIBlockElement::GetList(
+    array(),
+    array("=ID"=>$ELEMENT_ID),
+    false,
+    false,
+    array("PREVIEW_PICTURE")
+  );
+  if($arElement = $rsElement->Fetch())
+  {
+    $arFile = CFile::GetFileArray($arElement["PREVIEW_PICTURE"]);
+    if($arFile)
+       echo '<img src="'.$arFile["SRC"].'" />';
+  }
+}

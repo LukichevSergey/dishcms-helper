@@ -1,0 +1,7 @@
+<!-- изменения видны только админу -->
+<? global $USER; ?>
+<? 	if ($USER->IsAdmin()): ?>
+    <div class="description-wrap">
+        <p></p>
+    </div>
+<? endif ?>

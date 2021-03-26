@@ -1,0 +1,5 @@
+find public_html/bitrix/templates/stom_orange_s1_copy/components -type f -name "*.php" -exec grep -i -H "info_block_elem_work"  {} \; | tee -a logfile3.txt
+
+find -type f -name "*.php" -exec grep -i -H "uploadFile"  {} \; | tee -a logfile3.txt
+
+/public_html/bitrix/templates

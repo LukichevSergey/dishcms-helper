@@ -1,0 +1,62 @@
+// probiser.ru  themes/daptive_template_2/iews/shop/category.php
+
+
+
+<?
+/** @var CActiveDataProvider[Product] $dataProvider */
+$productPage=(int)Yii::app()->request->getParam('p', 1); 
+$productPageCount=ceil($dataProvider->totalItemCount / $dataProvider->pagination->pageSize); 
+?>
+<?if(D::role('admin')) CmsHtml::editPricePlugin()?>
+<h1><?=$category->getMetaH1()?></h1>
+<div id="category-description" class="category-description">
+    <?=$category->description?>
+</div>
+
+<? if(!empty($brand)): ?>
+	<div class="brand__category">
+		<h2><span>Бренд</span><?=CHtml::link($brand->title, '/brands/'.$brand->alias);?></h2>
+		<div class="brand__info">
+			<div class="brand__logo"><img src="<?= $brand->getSrc(); ?>" /></div>
+			<div class="brand__preview-text"><?= $brand->preview_text; ?></div>
+		</div>
+	</div>
+<? endif; ?>
+
+<div id="product-list-module">
+	<?$this->renderPartial('_products_listview', compact('dataProvider'))?>
+</div>
+
+<?
+if($productPage < $productPageCount):
+	?><div class="text-center"><a id="jsBtnCatalogProductShowNext" href="<?= $this->createUrl('shop/category', ['id'=>$category->id, 'all'=>1]); ?>" class="btn to-cart">Показать еще букеты</a></div><?
+endif;
+?>
+
+<div id="category-description-bottom"></div>
+<script>document.addEventListener("DOMContentLoaded",function(){
+	$("#category-description").detach().appendTo("#category-description-bottom");$("#category-description").show();
+	var page = parseInt('<?=$productPage?>'),
+    pageCount = parseInt('<?=$productPageCount?>'), 
+	loadingFlag = false;
+	function load_data(notall) {
+		if ((page <= pageCount) && !loadingFlag) {
+			all=(notall === true) ? 0 : 0;//1;
+            loadingFlag = true;
+            $.post(window.location.href, {'p': page + 1,'all':all,'isa': 1,'<?=Yii::app()->request->csrfTokenName?>': '<?=Yii::app()->request->csrfToken?>'},
+                function(data) {
+                    page++;                            
+                    loadingFlag = false;
+                    if(page <= pageCount) $('#ajaxListView').append(data);
+                    if(all > 0) page=pageCount+1;
+                    if(page >= pageCount) $('#jsBtnCatalogProductShowNext').hide();
+            	}
+           	);
+        }
+        return false;
+    }
+	$(window).scroll(function(){ 
+		if($(window).scrollTop()+$(window).height()>=($("#product-list-module").height()+$("#product-list-module").scrollTop())) load_data(true);
+    });
+	$(document).on("click", "#jsBtnCatalogProductShowNext", load_data);
+});</script>

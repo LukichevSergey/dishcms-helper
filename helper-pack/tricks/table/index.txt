@@ -1,0 +1,10 @@
+js:
+
+$('table').wrap('<div class="table-wrap"></div>')
+
+css:
+
+.table-wrap {
+  overflow-x: auto;
+  width: 100%;
+}

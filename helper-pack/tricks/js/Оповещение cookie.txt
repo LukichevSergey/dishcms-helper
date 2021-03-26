@@ -1,0 +1,22 @@
+<div class="cookie-notification" style="position: fixed; bottom: 0; left: 0; display: none;">
+				<span class="cookie-notification__message">Мы используем файлы Cookie для улучшения 		работы, персонализации и повышения удобства пользования нашим сайтом.
+					Продолжая посещать сайт, вы соглашаетесь на использование нами файлов Cookie. <a href="">Подробнее о политике в отношении Cookie</a></span>
+				<button type="button" class="accept-btn btn">Принять все</button>
+			</div>
+
+
+
+function showNotification() {
+				if (localStorage.getItem('notification') == null) {
+					cookieNotification.show();
+				}
+			}
+
+			var cookieNotification = $('.cookie-notification');
+
+			setTimeout(showNotification, 2000);
+
+			$('.accept-btn ').click(function() {
+				$(this).closest('.cookie-notification').hide();
+				localStorage.setItem('notification', true);
+			});

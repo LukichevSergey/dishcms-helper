@@ -1,0 +1,16 @@
+$('.js-contact-map').css({
+        'pointer-events': 'none'
+      }).wrap('<div class="map__box"></div>');
+
+      $('.map__box').hover(function() {
+        $(this).attr('title', 'Для активации карты нажмите на нее').css({'cursor': 'help'})
+      }, function() {
+        $(this).attr('title', null).css({'cursor': 'default'})
+      })
+
+      $('.map__box').click(function() {
+        $(this).find('.js-contact-map').css({
+          'pointer-events': 'initial',
+          'cursor': 'default'
+        }).attr('title', null)
+      })
