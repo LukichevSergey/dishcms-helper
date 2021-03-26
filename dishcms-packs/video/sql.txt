@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS `video` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `preview` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;

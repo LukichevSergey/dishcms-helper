@@ -1,0 +1,130 @@
+init.php (condor-nsk.ru)
+
+AddEventHandler('main', 'OnEpilog', 'onEpilog', 1);
+function onEpilog(){
+    global $APPLICATION;
+    if(preg_match('/(catalog)/', $APPLICATION->GetCurDir())){
+        if(isset($GLOBALS["PAGE_META_TITLE"])) {
+            $APPLICATION->SetPageProperty("title", $GLOBALS["PAGE_META_TITLE"]);
+        }
+        if(isset($GLOBALS["PAGE_META_DESCRIPTION"])) {
+            $APPLICATION->SetPageProperty("description", $GLOBALS["PAGE_META_DESCRIPTION"]);
+        }
+    }
+    
+	foreach(array('title', 'description') as $name) {
+		if ( $value = $APPLICATION->GetPageProperty($name) ) {
+			$newValue = preg_replace_callback('/\{(incity|phone|domain)\}/', function($matches) {
+				$cityPrefix = \kontur\GetCityPrefix();
+				switch(strtolower($matches[1])) {
+					case 'incity':
+						switch($cityPrefix) {
+							case 'perm': return 'в Перми';
+					    	case 'ufa': return 'в Уфе';
+					    	case 'chl': return 'в Челябинске';
+					    	case 'omsk': return 'в Омске';
+							case 'tomsk': return 'в Томске';
+							case 'brnl': return 'в Барнауле';
+							case 'kem': return 'в Кемерово';
+							case 'krk': return 'в Красноярске';
+							case 'irk': return 'в Иркутске';
+							case 'yak': return 'в Якутске';
+							case 'ekb': return 'в Екатеринбурге';
+							case 'brn': return 'в Барнауле';
+							case 'cht': return 'в Чите';
+							case 'brk': return 'в Братске';
+							case 'irk': return 'в Иркутске';
+							case 'kem': return 'в Кемерово';
+							case 'nkz': return 'в Новокузнецке';
+							case 'krsk': return 'в Красноярске';
+							case 'uu': return 'в Улан-Удэ';
+							case 'tuva': return 'в Республике Тыва';
+							case 'abn': return 'в Абакане';
+							case 'tmsk': return 'в Томске';
+							case 'pkm': return 'в Петропавловске-Камчатском';
+							case 'mgn': return 'в Магадане';
+							case 'vld': return 'в Владивостоке';
+							case 'ykts': return 'в Якутске';
+							case 'ush': return 'в Южно-Сахалинске';
+							case 'hbk': return 'в Хабаровске';
+							default: return 'в Новосибирске';
+						}
+						break;
+					case 'phone':
+						switch($cityPrefix) {
+							case 'perm': 
+					    	case 'ufa': 
+					    	case 'chl': 
+					    	case 'omsk': 
+							case 'tomsk': 
+							case 'brnl': 
+							case 'kem': 
+							case 'krk': 
+							case 'irk': 
+							case 'yak':
+							case 'brn': 
+							case 'cht': 
+							case 'brk': 
+							case 'irk': 
+							case 'kem': 
+							case 'nkz': 
+							case 'krsk': 
+							case 'uu': 
+							case 'tuva': 
+							case 'abn': 
+							case 'tmsk': 
+							case 'pkm': 
+							case 'mgn': 
+							case 'vld': 
+							case 'ykts': 
+							case 'ush': 
+							case 'hbk':  
+							case 'ekb': return '8 (800) 100-41-80';
+							default: return '8 (383) 261-41-58';
+						}
+						break;
+					case 'domain':
+						switch($cityPrefix) {
+							case 'perm': 
+					    	case 'ufa': 
+					    	case 'chl': 
+					    	case 'omsk': 
+							case 'tomsk': 
+							case 'brnl': 
+							case 'kem': 
+							case 'krk': 
+							case 'irk': 
+							case 'yak': 
+							case 'ekb': 
+							case 'brn': 
+							case 'cht': 
+							case 'brk': 
+							case 'irk': 
+							case 'kem': 
+							case 'nkz': 
+							case 'krsk': 
+							case 'uu': 
+							case 'tuva': 
+							case 'abn': 
+							case 'tmsk': 
+							case 'pkm': 
+							case 'mgn': 
+							case 'vld': 
+							case 'ykts': 
+							case 'ush': 
+							case 'hbk': 
+							default: return $_SERVER['SERVER_NAME'];
+						}
+						break;
+				}
+				return '';
+			}, $value);
+			
+			$newValue = trim(preg_replace('/\s+/', ' ', $newValue));
+			if ($value !== $newValue) {
+				$APPLICATION->SetPageProperty($name, $newValue);
+			}
+		}
+	}
+}
+

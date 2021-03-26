@@ -1,0 +1,49 @@
+<div class="photo-gallery-tabs" style="margin-bottom:25px;">
+	<div class="active"><span><a href="#">Таб 1</a></span><span>&nbsp;</span></div>
+	<div class="inactive"><a href="#">Таб 2</a></div>
+</div>
+
+.photo-gallery-tabs {
+    position: relative;
+    height: 30px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    width: 684px;
+
+    color: #00568A;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.photo-gallery-tabs .active span:first-child, .photo-gallery-tabs .inactive {
+    display: inline-block;
+    background: none;
+    background-color: #E2E2E2;
+    padding: 7px 25px;
+    text-align: center;
+    width: 120px;
+    border-radius: 10px;
+    border: 1px solid #B0B0B0;
+    border-bottom: 0;
+    height: 40px;
+}
+
+.photo-gallery-tabs .active span:first-child {
+    background-color: #fff;
+}
+.photo-gallery-tabs .active span:last-child {
+    position: absolute;
+    top: 8px;
+    display: inline-block;
+    border-bottom: 1px solid #B0B0B0;
+    width: 504px;
+    height: 21px;
+    z-index: 4;
+}
+.photo-gallery-tabs .inactive {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 175px;
+}

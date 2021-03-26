@@ -1,0 +1,13 @@
+http://www.iana.org/
+http://www.ipdeny.com/ipblocks/
+
+Calc: http://www.thaemlitz.com/john/javascript-ip-subnet-calculator.html
+
+ipList=["1.0.1.0/24", "1.0.2.0/23"];
+window.ipListResult=[];
+ipList.forEach(function(item, i, arr) {
+    $("#network").val(item); 
+    $("#network").trigger("change");
+    window.ipListResult.push($("#startIP").val() + "-" + $("#endIP").val());
+});
+console.log('"' + window.ipListResult.join('","') + '"');

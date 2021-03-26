@@ -1,0 +1,4 @@
+<?
+$MESS['MLIBGALLERY_SETTINGS_GROUP'] = 'Настройки';
+$MESS['MLIBCOLLECTION_ID_NAME'] = 'Коллекция';
+?>

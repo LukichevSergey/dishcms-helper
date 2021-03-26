@@ -1,0 +1,192 @@
+.filials__cities-choosebox {
+    display: inline-block;
+    margin-left: 10px;
+}
+.filials__cities {
+    margin-bottom: 20px;
+}
+.baloon a {
+  text-decoration: none;
+}
+.baloon a:hover {
+  text-decoration: underline;
+}
+.baloon {
+  width: 300px;
+  padding: 20px 30px;
+  background-color: #fff;
+}
+.baloon__header {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 35px;
+  -ms-align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.baloon__title {
+  margin-right: 20px;
+  font-family: "Graphik LCG";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #111;
+}
+.baloon__header-icons {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.baloon__header-icon {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 22px;
+  height: 22px;
+  margin-right: 12px;
+  -ms-align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.baloon__header-icon:last-child {
+  margin-right: 0;
+}
+.baloon__header-icon img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.baloon__content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 5px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 1px solid #d1d1d1;
+  -ms-align-items: flex-start;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+}
+.baloon__contact {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 9px;
+  -ms-align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.baloon__contact-icon {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  margin-right: 13px;
+  -ms-align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.baloon__contact-icon img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.baloon__contact-text {
+  font-family: "Graphik LCG";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #111;
+}
+.baloon__footer {
+  padding-top: 12px;
+}
+.baloon__footer-icons {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+}
+.baloon__footer-icon {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 28px;
+  height: 28px;
+  -ms-align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.baloon__footer-icon img {
+  max-width: 100%;
+  max-height: 100%;
+}

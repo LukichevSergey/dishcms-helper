@@ -1,0 +1,5 @@
+<?
+$MESS['KONTUR_BTN_IMAGE_PARAM_LINK'] = 'Ссылка';
+$MESS['KONTUR_BTN_IMAGE_PARAM_IMAGE_SRC'] = 'Изображение';
+$MESS['KONTUR_BTN_IMAGE_PARAM_IMAGE_ALT'] = 'Подпись изображения (ALT/TITLE)';
+?>

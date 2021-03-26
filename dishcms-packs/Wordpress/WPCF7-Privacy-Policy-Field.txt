@@ -1,0 +1,35 @@
+.acceptance-police {
+	margin-bottom: 20px;
+    display: block;
+}
+.acceptance-police .wpcf7-list-item {
+	margin: 0;
+}
+.acceptance-police input {
+	width: 21px;
+    display: inline;
+    position: relative;
+    top: 18px;
+}
+.acceptance-police .wpcf7-list-item-label {
+	font-weight: normal;
+}
+<span class="wpcf7-form-control-wrap acceptance-police" style="
+    margin-bottom: 20px;
+    display: block;
+"><span class="wpcf7-form-control wpcf7-acceptance"><span class="wpcf7-list-item" style="
+    margin: 0;
+"><label><input type="checkbox" name="acceptance-police" value="1" aria-invalid="false" style="
+    width: 21px;
+    display: inline;
+    position: relative;
+    top: 18px;
+"><span class="wpcf7-list-item-label" style="
+    font-weight: normal;
+    /* font-size: 0.8em; */
+">Я согласен с политикой обработки персональных данных.</span></label></span></span></span>
+
+[acceptance acceptance-police]Я согласен с <a href="/politika-obrabotki-personalnyx-dannyx/" target="_blank">политикой обработки персональных данных</a>.[/acceptance]
+
+
+</br><i class="fa fa-check-circle" aria-hidden="true">   Я согласен с политикой обработки персональных данных. </i>

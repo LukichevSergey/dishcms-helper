@@ -1,0 +1,45 @@
+На старом сервере
+1) Подключить SSH (если не подключен)
+3) Запустить SSH клиент и выполнить команды:
+> mc
+запустить файловый менеджер (проводник)
+затем перейти в папку сайта и нажать Ctrl + O (буква O)
+
+> cat protected/config/db.php
+покажет конфигурацию подключения к базе данных для DishCMS
+
+> mysqldump -u kontursite_vdoct -p kontursite_vdoct > kontursite_vdoct.sql
+(поясенение: mysqldump -u пользователь -p база_данных > имя_файл_дампа.sql)
+Это создается файл дампа базы данных
+
+На новом сервере
+1) Подключить SSH
+2) Создать базу данных
+3) Удалить файл index.htm через файловый менеджер, который создает Timeweb по умолчанию.
+4) Запустить SSH клиент и выполнить команды:
+> mc
+запустить файловый менеджер (проводник)
+затем перейти в папку сайта и нажать Ctrl + O (буква O)
+
+> scp -r kontursite@92.53.96.186:~/viezdnoidoktor.ru/public_html/* .
+(пояснение: scp -r логин_к_старому_хостингу@айпи_старого_хостинга:путь_к_папке_сайта/* .)
+
+> scp kontursite@92.53.96.186:~/viezdnoidoktor.ru/public_html/.htaccess .htaccess
+> scp kontursite@92.53.96.186:~/viezdnoidoktor.ru/public_html/.gitattributes .gitattributes
+> scp kontursite@92.53.96.186:~/viezdnoidoktor.ru/public_html/.gitignore .gitignore
+
+> mysql -u kontursite_vdoct -p kontursite_vdoct < kontursite_vdoct.sql
+(поясенение: mysql -u пользователь_на_новом_сервере -p база_данных_на_новом_сервере < имя_файл_дампа.sql)
+Это загрузит дамп в базу данных
+
+5) Через файловый менеджер поправить настройки подключения к базе данных в файле protected/config/db.php
+6) Через файловый менеджер удалить файл дампа базы в корне сайта kontursite_vdoct.sql
+7) Загружить папку с Yii Framework 1.1.20 на одну папку выше папки сайта
+8) Если выдает ошибку "Framework not found!", то поправить путь к фрейворку в файле /index.php
+Напр., $yii = dirname(__FILE__) . '/../yii/yiilite.php'; 
+где dirname(__FILE__) - это текущая папка сайта
+
+На старом сервере
+1) Перенести домен
+2) Удалить файлы сайта, если требуется
+3) Удалить базу данных сайта (kontursite_vdoct)

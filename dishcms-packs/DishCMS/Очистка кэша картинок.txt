@@ -1,0 +1,12 @@
+	public function clearImageCache()
+    {
+    	$path=\Yii::getPathOfAlias('webroot.images.product');
+    	$files=HFile::getFiles($path);
+    	foreach($files as $filename) {
+    		if(preg_match('/^tmb_.+$/i', $filename) || preg_match('/^.*?_(b|s|tmb)\.(jpg|jpeg|png)$/i', $filename)) {
+    			if(is_file("{$path}/{$filename}")) {
+    				unlink("{$path}/{$filename}");
+    			}
+    		}
+    	}
+    }

@@ -1,0 +1,66 @@
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks
+    RewriteEngine On
+
+	# https://roem.ru/21-10-2016/235217/source-itsoft/
+	RewriteCond %{REQUEST_URI} ^/.git [NC]
+	RewriteRule . - [L,R=403]
+	
+	RewriteCond %{HTTP_HOST} ^(.*)$
+	RewriteRule . - [E=httphost:%1]
+	RewriteCond %{HTTP_HOST} ^www\.(.*)$
+	RewriteRule . - [E=httphost:%1]
+	
+	RewriteCond %{REQUEST_URI} ^/index$ [NC]
+	RewriteRule . / [L,E=htredirect:yes]
+	
+	RewriteCond %{REQUEST_URI} ^/index.php/(.*)$ [NC]
+	RewriteRule . /%1 [L,E=htredirect:yes,E=htindex:yes]
+
+	RewriteCond %{REQUEST_URI} ^/index\.(html|html)(.*)$ [NC]
+	RewriteRule ^(.*)$ https://%{ENV:httphost}/ [L,R=301]
+	
+	#RewriteCond %{REQUEST_URI} !\?
+	#RewriteCond %{REQUEST_URI} !\&
+	#RewriteCond %{REQUEST_URI} !\=
+	#RewriteCond %{REQUEST_URI} !\.
+	#RewriteCond %{REQUEST_URI} !\/$
+	#RewriteCond %{HTTP_HOST} ^www\.(.*)$
+	#RewriteRule ^(.*)$ /$1/ [L,E=htredirect]
+	
+	RewriteCond %{REQUEST_URI} !\?
+	RewriteCond %{REQUEST_URI} !\&
+	RewriteCond %{REQUEST_URI} !\=
+	RewriteCond %{REQUEST_URI} !\.
+	RewriteCond %{REQUEST_URI} ![^\/]$
+	RewriteCond %{HTTP_HOST} ^www\.(.*)$
+	RewriteRule ^(.*)$ /$1 [L,E=htredirect]
+	
+	RewriteCond %{REQUEST_URI} !\?
+	RewriteCond %{REQUEST_URI} !\&
+	RewriteCond %{REQUEST_URI} !\=
+	RewriteCond %{REQUEST_URI} !\.
+	RewriteCond %{REQUEST_URI} !\/$
+	RewriteCond %{HTTP_HOST} ^([^www].*)$
+	RewriteRule ^(.*)$ /$1/ [L,E=htredirect]
+	
+	RewriteCond %{ENV:REDIRECT_htredirect} yes [OR]
+	RewriteCond %{ENV:htredirect} yes
+	RewriteRule ^(.*)$ https://%{ENV:httphost}/$1 [R=301,L]
+	
+	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+	RewriteRule ^(.*)$ https://%{ENV:httphost}/$1/ [R=301,L]
+	
+	# http to https
+	RewriteCond %{HTTPS} off
+	RewriteCond %{HTTP:X-Forwarded-Proto} !https
+	RewriteCond %{REQUEST_URI} !^/yandex_30c2863c17822cdf\.html$ [NC]
+	RewriteRule ^(.*)$ https://%{ENV:httphost}%{REQUEST_URI} [L,R=301]
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-l
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !/bitrix/urlrewrite.php$
+	RewriteRule ^(.*)$ /bitrix/urlrewrite.php [L]
+	RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]    
+</IfModule>

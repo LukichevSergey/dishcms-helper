@@ -1,0 +1,15 @@
+/**
+ * Подсчет размера папки
+ */
+exec('pwd', $o);
+exec('du -s -B 1 ./../../bitrix', $o); 
+exec('du -s -B 1 ./../../bitrix/cache', $o);
+exec('du -s -B 1 ./../../bitrix/tmp', $o); 
+exec('du -s -B 1 ./../../bitrix/updates', $o);
+exec('du -s -B 1 ./../../bitrix/backup', $o); 
+exec('du -s -B 1 ./../../bitrix/managed_cache', $o); 
+exec('du -s -B 1 ./../../bitrix/modules', $o); 
+exec('du -s -B 1 ./../../bitrix/templates', $o); 
+exec('du -s -B 1 ./../../upload', $o); 
+echo '<pre>';
+print_r($o);

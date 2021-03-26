@@ -1,0 +1,85 @@
+Обновлена документация http://doc.konturdev.ru/
+
+Список обновлений версии 2.4
+
+*/index.php*
+    - добавлен дополнительный перехват потока вывода для отправки заголовка 304 Last Modified, генерируемый поведением \ext\updateTime\behaviors\UpdateTimeBehavior для модели наследуемой от \common\components\base\ActiveRecord
+    - добавлен 301-редирект на / при прямом переходе на файл /index.php
+*Gii*
+- добавлен шаблон "cms" генерации модуля
+*Добавлены модули*
+- добавлен модуль "CRUD" common/crud
+- добавлен модуль "Банки" extend/banks (на модуле CRUD)
+- добавлен модуль "SEO" common/seo
+- добавлено раширение "ЧПУ" common/seo/ext/sef
+- добавлен модуль "Слайдер" extend/slider (на модуле CRUD)
+- добавлен модуль "Страницы" extend/pages (на модуле CRUD)
+- добавлен модуль "Сопутствующие товары" ecommerce/concurrentGoods (на модуле CRUD)
+- *модуль settings перенесен в common/settings*
+- перенесено расширение сортировки ext.D.sort в /common/ext/sort. Код ext.D.sort оставлен для поддержки старых версий.
+*Доработки и исправление ошибок"
+- добавлен класс-помощник для фильтра товаров protected.components.helpers.HFilter. Работает в группе с widgets.filter.ProductFilter и scope "eav()" Product::model()->eav()->findAll(), которые также были добавлены.
+Работу со связкой можно посмотреть protected\modules\extend\modules\pages\docs\example\rangeof\
+- параметры приложения (Yii::app()->params) вынесены в отдельный файл /config/params.php.
+- Добавлен метод проверки значения из настроек CMS D::cmsIs()
+- Добавлен класс-помощник для модуля администрирования \admin\components\helpers\HAdmin
+- В разделе администрирования основное верхнее меню вынесено в отдельный файл конфигурации "/admin/config/menu.php".
+- Добавлена настройка "Отображать Бренды" в "Основные настройки/Магазин".
+- Fix: \DShopRule неверно создавалась ссылка для товаров с брендом.
+- Fix: DAliasRule. Ошибка при разборе пустого маршрута.
+- Fix: \DShopRule не верно формировались ссылки для $productOneSef=false
+- Fix: (critical) \common\components\helpers\HDb исправлены ошибки получения результата в методах queryAll() и queryRow().
+*обновлен модуль DCart*
+- ополнительно может быть задан обработчик позиции после добавления в корзину onAfterAdd, afterUpdate
+- виджет AddToCartButtonWidget. Добавлена возможность задавать свои js обработчики получения значения дополнительных атрибутов;
+- компонент DCart. добавлена поддержка события onAfterAdd.
+- DCart.js убрано создание DOM-элемента ошибки, при некорректном значении count будет установлено 1 (единица).
+- /docs/README.txt добавлена документация подключения сопуствующих товаров.
+*обновлен модуль DOrder*
+    - добавлена возможность задавать несколько типов оплат для Яндекс.Кассы
+*обновлен модуль common*
+- добавлены /assets/js/kontur/common/tools: number_format.js и onload.js;
+- \common\components\base\Widget добавлены методы openTag() и closeTag().
+- \common\components\helpers\HHash::random() улучшена генерация случайного числа.
+- добавлено новое поведение атрибута списка ARAttributeListBehavior.php
+- добавлен новый класс-помощник для маршрутизации \common\components\helpers\HRequest 
+- добавлен новый класс-помощник утилит \common\components\helpers\HTools
+{code}\common\components\base\ActiveRecord{code}
+- добавлен статический метод получения модели по ИД ActiveRecord::modelById();
+- добавлен scope wcolumns() выборка по значениям атрибутов;
+- добавлен scope select() установка полей выборки;
+- добавлен метод listData();
+- добавлен метод fetchScalar();
+{code}\common\components\helpers\HArray as A{code}
+- добавлен метод установки значения в глубину массива A::rset();
+- добавлен метод применения callback функции к элементу в глубине массива A::rcallback();
+- добавлена возможность для метода A::m() принимать несколько массивов;
+- обновлен метод сортировки массива по переданным ключам A::sort();
+- добавлен метод проверки существования ключа A::existsKey();
+- добавлен метод рекурсивного обход массива с применением callback-функции A::rwalk(). Отличие от array_walk_recursive() в том, что  callback-функция применяется ко всем элементам, а не только к конченым.
+- добавлен метод преобразования значения в массив A::toa().
+{code}\common\components\helpers\HDb{code}
+- добавлен метод получения объекта \CDbCriteria по переднному значению HDb::criteria()
+- добавлен метод HDb::addRangeCondition()
+- добавлен метод HDb::dbcommand()
+- добавлен метод добавления scopes для критерия HDb::addScopes()
+- Fix: исправлено накатывание миграций при файлах с некорректным форматом имени.
+{code}\common\components\helpers\HModel{code}
+- добавлен метод получения модели HModel::load();
+- добавлен метод получения модели по заданным атрибутам HModel::loadByColumn();
+- добавлен метод получения модели по ИД HModel::loadByPk();
+{code}\common\components\rules\TagRule{code}
+- добавлена возможность задавать ссылку на отдельный атрибут и атрибут со значением.
+*обновлены расширения модуля common*
+{code}\common\ext\dataAttribute\behaviors\DataAttributeBehavior{code}
+- добавлен метод поиска элемента DataAttributeBehavior->find()
+{code}\common\ext\dataAttribute\widgets\DataAttribute{code}
+- добавлен параметр дополнительной подсказки для атрибута
+- обновлен алгоритм получения данных
+{code}\common\ext\active{code}
+- добавлено поведение \common\ext\active\behaviors\PublishedBehavior
+{code}\common\ext\updateTime\behaviors\UpdateTimeBehavior{code}
+- добавлен метод sendLastModified() отправки заголовка 304 Last Modified
+- добавлена параметр $autoSendLastModified автоматической генерации заголовка "304 Last Modified" в зависимости от используемых моделей с данным поведением.
+*обновлен модуль common/settings*
+- добавлен пример "ext-data-ajax" подгрузки данных через ajax (docs/examples)

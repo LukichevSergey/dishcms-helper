@@ -1,0 +1,120 @@
+.calculator__form-item_header {
+    width: 100%;   
+}
+.calculator__form-item_header select {
+    font-size: 18px;
+    padding: 5px 10px;
+}
+.calculator__form-item_header-right {
+    float: right;
+    display: inline-block;
+}
+.calculator__form-item_header-left {
+    display: inline-block;
+}
+
+
+.calculator__form-item {
+    margin-bottom: 40px;    
+}
+.calculator__form-item:not(:first-child) {
+    margin-top: 30px;
+}
+
+.calculator__form-item_fields {
+    margin-top: 10px;
+    border: 1px solid #373f89;
+    border-radius: 3px;
+    padding: 27px 20px;
+    background: #f5f5f5;   
+    display: flex;
+    align-items: center;
+}
+
+.calculator__form-item_field {
+    margin-right: 10px;
+}
+.calculator__form-item_field input[type="input"] {
+    display: block;
+    height: 36px;
+    text-align: right;
+    padding: 2px 10px;
+    width: 100%;
+    min-width: 150px;
+}
+.calculator__form-item_field select {
+    display: block;
+    height: 36px;
+    text-align: right;
+    padding: 2px 10px;
+    width: 100%;
+    min-width: 150px;
+}
+.calculator__form-item_field input.error {
+    border: 1px solid #cc0033;
+    color: #cc0033;
+}
+.calculator__form-item_field select.error {
+    border: 1px solid #cc0033;
+    color: #cc0033;
+}
+.calculator__form-item_field-number {
+    position: relative;
+}
+.calculator__form-item_field-number-hint {
+    position: absolute;
+    right: 5px;
+    font-size: 0.8em;
+    opacity: 0.9;
+    font-style: italic;
+    font-weight: normal;
+}
+.calculator__form-item_summary {
+    width: 100%;
+    text-align: right;
+    font-size: 1.5em;
+}
+.calculator__form-item_summary span {
+    font-size: 0.7em;
+}
+
+.calculator__form-controls {
+    text-align: right;
+}
+.calculator__form-controls button {
+    padding: 7px 25px;
+}
+
+.calculator__form-info {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 22px;
+}
+.calculator__form-info-total-price {
+    font-weight: bold;
+}
+.calculator__form-info-total-price:before {
+    content: 'Итоговая стоимость: ';
+    font-weight: normal;
+    display: block;
+}
+.calculator__form-info-total-mass {
+    font-weight: bold;
+    margin-top: 10px;
+}
+.calculator__form-info-total-mass:before {
+    content: 'Общая масса: ';
+    font-weight: normal;
+    display: block;
+}
+.calculator__form-info-total-mass:after {
+    content: ' т';
+}
+
+.calculator__form-submit {
+    text-align: center;
+    margin-top: 20px;
+}
+.calculator__form-submit button {
+    padding: 10px 70px !important;
+}

@@ -1,0 +1,43 @@
+.danger {
+	padding: 20px;
+	background: rgba(255, 0, 0, 0.47);
+	font-size: 15px;
+	width: 50%;
+	border-radius: 10px;
+}
+
+.all_right {
+	padding: 21px;
+	background: rgba(8, 218, 19, 0.24);
+	font-size: 20px;
+	/* width: 47%; */
+	border-radius: 10px;
+	margin: 10px;
+}
+
+.button-column img{
+	width: 27px;
+}
+
+.message_block{
+	margin-top: 30px;
+
+}
+
+
+#body, #emails{
+
+	display: none;
+}
+.buttons{
+	background: rgba(209, 233, 249, 0.47);
+	
+	border: 1px solid #D4CED3;
+	margin: 10px;
+	padding: 10px;
+	
+}
+
+.c_pointer{
+	cursor: pointer;
+}

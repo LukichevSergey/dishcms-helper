@@ -1,0 +1,365 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    overflow-y: scroll;
+}
+body {
+    font: 14px Arial, sans-serif;
+}
+a {
+    color: #006699;
+    cursor: pointer;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.link {
+    text-decoration: underline;
+}
+
+.js-link,
+.ajax-link {
+    text-decoration: none;
+    border-bottom: 1px dotted #006699;
+}
+.js-link:hover,
+.ajax-link:hover {
+    border-color: transparent;
+}
+
+a.dashed {
+    border-bottom: #069 1px dashed;
+    text-decoration: none;
+}
+
+.clr   {clear: both;}
+.left  {float: left;}
+.right {float: right;}
+
+.left-col {
+    float: left;
+    width: 187px;
+}
+.right-col {
+    float: right;
+    width: 680px;
+}
+
+#top-line {
+    height: 18px;
+    background: url("../images/top-line.png") repeat-x;
+}
+
+#wrapper {
+    width: 920px;
+    margin: 0 auto;
+}
+
+#header {
+    padding: 30px 0;
+}
+#logo {
+    display: block;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.notify {
+	position: relative;
+    background: #F7DB4B;
+    padding: 0px 8px;
+    margin-left: 0px;
+    color: black;
+    font-weight: bold;
+    text-decoration: none !important; 
+    border-radius: 4px;
+}
+.notify-wrap { 
+    display:inline-block;
+}
+
+#sitename {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+#sitename a {
+    color: #000;
+    text-decoration: none;
+}
+#top-menu {
+    padding-top: 16px;
+}
+
+#main {
+    margin-bottom: 30px;
+    padding-right: 20px;
+}
+#content {
+    border: solid 5px #ECECEC;
+    padding: 20px;
+}
+
+#footer {
+    border-top: solid 1px #ECECEC;
+    padding: 20px;
+    font-size: 12px;
+}
+#footer * {
+    color: #999999;
+}
+
+#header, #footer {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* .site-menu */
+.site-menu {
+    list-style: none;
+}
+.site-menu li {
+	position: relative;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+    margin-bottom: 10px;
+}
+.site-menu li.default {
+    font-weight: bold;
+}
+.site-menu li a {
+    font-size: 0.9em;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.site-menu li:hover,
+.site-menu .ui-sortable-helper,
+.site-menu li.ui-state-highlight,
+.site-menu li.active {
+    background: url("../images/menu-item.png") no-repeat;
+}
+.site-menu .ui-state-disabled {
+    opacity: 1;
+}
+.site-menu .ui-state-disabled.last {
+    border-bottom: solid 1px #E9E9E9;
+    margin-right: 12px;
+    height: 0;
+}
+.site-menu .ui-state-disabled:hover {
+    /*background: none;*/
+}
+.site-menu .ui-state-disabled a {
+    color: #999;
+    font-size: 12px;
+}
+.site-menu li.ui-sortable-helper {
+    background-position: 0 -76px;
+    height: 38px !important;
+    width: 195px !important;
+}
+.site-menu li.ui-state-highlight {
+    background-position: 0 -38px;
+}
+
+/* settings */
+#settings-form .row {
+    margin-bottom: 25px;
+}
+
+
+/* orders */
+
+table#orders {
+    font-size:12px;
+    width: 100%;
+}
+table#orders tr.head {
+    background: #EEE;
+    text-align: center;
+}
+table#orders, td, tr {
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table#orders .orderuser {
+    color: #666;
+    text-decoration: none;
+    border-bottom:1px dotted #666;
+}
+table#orders .orderuser:hover {
+    color: #069;
+    border-bottom:1px dotted #069;
+}
+table#orders .details {
+    background: #EEE;
+    display:none;
+}
+table#orders > .sum, .count {
+    text-align: center;
+}
+table#orders .comment {
+    background: #F9F9F9;
+    padding: 4px;
+    width:605px;
+    max-width:605px;
+    border: #cccccc;
+}
+.mark {
+    width:19px;
+    height:17px;
+    cursor: pointer;
+    background:url("../images/markshop.png")  no-repeat 0 0;
+    margin: 0 auto;
+}
+.sumprice {
+    text-align:center;
+}
+.notifybutton {
+    position: absolute;
+    top: 0px;
+    left: 150px;
+}
+.notifyorders {
+ 	left: 67px !important;
+ 	top: -4px !important;
+}
+
+.unmarked {
+    background:url("../images/markshop.png") no-repeat -19px 0;
+}
+.actsum {
+    background: #CCC;
+    color: #666;
+}
+.order-button-active {
+    background: url(../images/alert-overlay.png) repeat-x #069;
+    display: inline-block;
+    color: #FFF;
+    text-decoration: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 1px 3px #999;
+    -moz-box-shadow: 0 1px 3px #999;
+    -webkit-box-shadow: 0 1px 3px #999;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 14px 9px;
+}
+
+
+/* faq */
+
+
+table#faq {
+    font-size:12px;
+    width: 100%;
+}
+table#faq tr.head {
+    color: #9e9e9e;
+    background: #EEE;
+    text-align: center;
+}
+table#faq, td, tr {
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table#faq .number {
+    width: 25px;
+}
+table#faq .date {
+    width: 100px;
+}
+table#faq .user {
+    color: #666;
+    text-decoration: none;
+    border-bottom:1px dotted #666;
+}
+table#faq .faquser:hover {
+    color: #069;
+    border-bottom:1px dotted #069;
+}
+table#faq .details {
+    background: #EEE;
+    display:none;
+}
+
+table#faq .details > label > span {
+    color:#777777;
+}
+
+table#faq .actions {
+    width:50px;
+}
+textarea.answer, textarea.question {
+    margin-top:3px;
+    margin-bottom:15px;
+    width: 605px;
+    max-width: 605px;
+    padding:5px;
+    height:80px;
+}
+
+/* reviews */
+
+table#reviews {
+    font-size:12px;
+    width: 100%;
+}
+table#reviews tr.head {
+    background: #EEE;
+    text-align: center;
+}
+table#reviews, td, tr {
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table#reviews .orderuser {
+    color: #666;
+    text-decoration: none;
+    border-bottom:1px dotted #666;
+}
+table#reviews .orderuser:hover {
+    color: #069;
+    border-bottom:1px dotted #069;
+}
+table#reviews .details {
+    background: #EEE;
+    display:none;
+}
+table#reviews > .sum, .count {
+    text-align: center;
+}
+table#reviews .comment {
+    background: #F9F9F9;
+    padding: 4px;
+    width:605px;
+    max-width:605px;
+    border: #cccccc;
+}
+.mark {
+    width:19px;
+    height:17px;
+    cursor: pointer;
+    background:url("../images/markshop.png")  no-repeat 0 0;
+    margin: 0 auto;
+}
+.sumprice {
+    text-align:center;
+}
+.unmarked {
+    background:url("../images/markshop.png") no-repeat -19px 0;
+}

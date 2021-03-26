@@ -1,0 +1,8 @@
+if( !function_exists('dd') ) {
+	function dd() {
+		$args = func_get_args();
+		if(!empty($args[0]) && is_numeric($args[0])) { $n=$args[0]; unset($args[0]); }
+		else $n=0;
+		file_put_contents(dirname(__FILE__)."/debug_{$n}_".date('d_m_Y_H_i_s').".log", var_export($args, true) . "\n\n--------------------------------\n\n", FILE_APPEND);
+	}
+}

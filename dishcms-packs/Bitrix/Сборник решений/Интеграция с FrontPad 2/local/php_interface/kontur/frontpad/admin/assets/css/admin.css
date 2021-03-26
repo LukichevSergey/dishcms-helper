@@ -1,0 +1,32 @@
+table.frontpad__table > tbody > tr:nth-child(even) {
+    background: #d0d9dc;
+}
+
+table.frontpad__table > thead th {
+    background: #d0d9dc;
+    text-align: center;
+    padding: 5px 0 3px;
+    font-weight: bold;
+}
+
+table.frontpad__table .product__title {
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid #333;
+}
+
+.frontpad__form .adm-detail-tab {
+    font-size: 10px !important;
+    padding: 3px 3px 10px !important;
+    line-height: 10px !important;
+    height: 20px !important;
+    margin: 2px !important;
+    max-width: 102px !important;
+}
+
+.frontpad__form .adm-detail-tab.adm-detail-tab-active {
+    padding: 3px 3px 10px !important;
+    height: 20px !important;
+    margin: 2px !important;
+    max-width: 102px;
+}

@@ -1,0 +1,59 @@
+[type=checkbox].error + label {
+    color: red;
+}
+.js-creditor-block {
+    margin-bottom: 21px !important;    
+}
+.js-creditor-block .js-remove-creditor {
+    font-size: 0.7em;
+    text-align: right;
+    width: 100%;
+    margin-top: -10px;
+}
+.bx-calendar-name-day-wrap {
+    min-height: 21px;
+}
+.bx-calendar-name-day-wrap .bx-calendar-name-day {
+    min-height: 20px;
+}
+.disclaimer__form .form-no-input input[type="text"]::-webkit-input-placeholder {color:#2d2d2d;}
+.disclaimer__form .form-no-input input[type="text"]:-moz-placeholder {color:#2d2d2d;}
+.disclaimer__form .form-no-input input {color:#2d2d2d;}
+.form-no-input select {
+    border-radius: 2px;
+    background: #fff;
+    border: 2px solid #d7d7d7;
+    height: 40px;
+    padding: 0 25px 0 25px;
+    width: 100%;
+    display: block;
+    font-size: 14px;
+    color: #6e6e6e;
+    outline: none;
+    transition: all 0.1s linear;
+}
+.js-creditor-address-hint {
+    border-radius: 2px;
+    background: #fff;
+    border: 2px solid #d7d7d7;
+    padding: 0;
+    min-width: 93.5%;
+    display: block;
+    font-size: 14px;
+    color: #6e6e6e;
+    outline: none;
+    transition: all 0.1s linear; 
+    position: absolute;
+    z-index: 999;
+}
+.js-creditor-address-hint li {
+    list-style: none;
+    padding: 3px 10px 3px 25px;  
+    line-height: 20px;
+    font-size: 14px;
+}
+.js-creditor-address-hint li:hover {
+    background: #d8d8d8;
+    cursor: pointer;
+    color: #000;
+}

@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+/*
+ * aciSortable jQuery Plugin
+ * http://acoderinsights.ro
+ *
+ */
+
+/* this is just as example, implement your own CSS to match the aciSortable init options */
+
+.aciSortablePlaceholder {
+    height:8px !important;
+    line-height:0;
+    background-color:#f8f1c8;/*F7DB4B;*/
+    border:1px solid #adadad;
+	 margin: 3px;
+}
+
+.aciSortablePlaceholder div {
+    height:10px;
+    border:0;
+}
+
+.aciSortableHelper {
+    position:absolute;
+    max-width:300px;
+    height: 15px;
+    background-color:#F4F4F4;
+    border:1px solid #F7DB4B;
+    padding:4px;
+    color:#000;
+    /* uncomment below to offset from the mouse cursor */
+    /*margin:20px 0 0 20px;*/
+}
+
+.dragHandle {
+	border: 1px solid #adadad;
+	margin: 3px;
+	background-color: #F4F4F4;	
+	cursor: move;
+	border-radius: 25px;
+}
+.dragHandle:hover {
+    background: #ECE900;
+    border: 1px solid #5C5C5C;
+}
+.dragHandle:active {
+    background: #FC9E5A;
+    border: 1px solid #5C5C5C;
+}
+.aci-sortable-menu-widget-wrapper {
+	width: 210px;
+	overflow: hidden;
+}
+
+.aci-sortable-menu-widget-wrapper ul {
+	margin-left: 10px;
+}
+
+.aci-sortable-menu-widget-wrapper li {
+	margin:7px;
+	list-style: none;
+	white-space: nowrap;
+}
+
+.aci-sortable-menu-widget-wrapper span.disabled {
+	margin-left: 10px;
+	font-size: 1.1em;
+}

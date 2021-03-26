@@ -1,0 +1,6 @@
+<?
+$MESS['KONTUR_BTN_SETTINGS_GROUP'] = 'Настройки';
+$MESS['KONTUR_BTN_LINK_NAME'] = 'Ссылка';
+$MESS['KONTUR_BTN_LABEL_NAME'] = 'Подпись';
+$MESS['KONTUR_BTN_CSS_CLASS_NAME'] = 'CSS класс'
+?>

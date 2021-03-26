@@ -1,0 +1,48 @@
+﻿Для вывода нескольких маркера товара
+_products.php
+<?php $a=array('new','sale','hit'); array_walk($a,function($v) use ($data){if($data->$v) echo " {$v}";}); ?>
+product.php
+<?php $a=array('new','sale','hit'); array_walk($a,function($v) use ($product){if($product->$v) echo " {$v}";}); ?>
+
+
+Затемнение фона
+<div style="position: fixed;background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;top:0;left:0;z-index: -1;"></div>
+
+Выпадающее меню без javascript
+ul.menu {
+	li {
+		position: relative;
+
+		& > ul {
+			display: none;
+		}
+
+		&:hover ul {
+			display: block;
+		}
+	}
+}
+
+
+					& > ul {
+						position: absolute;
+						display: none;
+						z-index: 9;
+  						border-top: 1px solid #000;
+  						border-right: 1px solid #000;
+  						background-color: rgba(244, 244, 244, 0.9);
+  						white-space: nowrap;
+
+  						& > li {
+  							float: none !important;
+	  						width: auto;
+  							text-align: left !important;
+  							border-bottom: 1px solid #000;
+  							border-left: 1px solid #000;
+  						}
+					}
+
+					&:hover ul {
+						display: block;
+					}
+

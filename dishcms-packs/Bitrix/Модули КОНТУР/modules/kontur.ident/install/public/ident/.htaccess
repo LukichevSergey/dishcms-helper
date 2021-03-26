@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{ENV:REDIRECT_STOP} !yes
+RewriteRule ^(.*)$ /ident/index.php [L,E=STOP:yes,E=IDENT_ACTION:$1]

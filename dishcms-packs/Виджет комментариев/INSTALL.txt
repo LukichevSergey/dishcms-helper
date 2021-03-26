@@ -1,0 +1,51 @@
+1) Добавить пункт в меню админки
+
+/protected/modules/admin/views/layouts/main.php
+Добавить в переменную $modulesMenu
+array('label'=>'Комментарии', 'url'=>array('comment/index')),
+
+2) Подключение виджета
+
+<?php $this->widget('widget.comments.CommentBlock', array('relation_model' => $model)); ?>
+Где $model - это модель, к которой привязан виджет
+
+3) Выполнить запрос из dump.sql
+
+4) Добавить стили на сайт
+
+.form.form_full-width {
+	width: 100%;
+}
+
+.form-message {
+	color: green;
+	margin-bottom: 15px;
+}
+
+.comment-list__item {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.comment-list__item + .comment-list__item {
+	margin-top: 10px;
+}
+
+.comment-list__item-title {
+	font-weight: bold;
+}
+
+.comment-list__item-date {
+	font-size: 12px;
+	color: #555;
+}
+
+.comment-list-wrapper {
+	h3 {
+		margin-bottom: 10px;
+	}
+}
+
+.comment-form {
+	margin-top: 15px;
+}

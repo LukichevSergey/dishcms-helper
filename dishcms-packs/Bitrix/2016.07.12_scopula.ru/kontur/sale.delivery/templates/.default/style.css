@@ -1,0 +1,10 @@
+.delivery__list .delivery__list-item {
+    margin-bottom: 20px;
+}
+.delivery__list .delivery__list-item:last-child {
+    margin-bottom: 0;
+}
+.delivery__list .delivery__list-item .delivery__list-item_name {
+    font-weight: bold;
+    font-size: 1.3em;
+}

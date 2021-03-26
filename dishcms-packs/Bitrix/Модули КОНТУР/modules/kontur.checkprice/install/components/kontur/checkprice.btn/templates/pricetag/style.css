@@ -1,0 +1,23 @@
+.checkprice-button-pricetag-box a {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    padding: 9px 30px;
+    border-radius: 3px;
+    color: #202002;
+    font: 14px/20px 'Open Sans','Istok Web',Arial,Helvetica,sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+}
+
+.checkprice-button-pricetag-box a.pricetag-added {
+    color: #e3363a !important;
+}

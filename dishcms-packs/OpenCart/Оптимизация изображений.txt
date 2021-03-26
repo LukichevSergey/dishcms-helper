@@ -1,0 +1,25 @@
+Оптимизация изображений через imagick convert для OpenCart
+
+1) добавить метод /admin/model/tool/image.php и в /catalog/model/tool/image.php
+в метод resize() добавить $this->optimize(DIR_IMAGE . $new_image); после сохранения новой картинки
+...
+public function optimize($filename, $maxWidth=1000, $maxHeight=1000)
+{
+	if(is_file($filename)) {
+		$ext=pathinfo($filename, PATHINFO_EXTENSION);
+		$resize="-resize {$maxWidth}x{$maxHeight}\>";
+		switch($ext) {
+			case 'jpg':
+			case 'jpeg':
+				exec("convert {$filename} {$resize} -sampling-factor 4:2:0 -strip -quality 72 -interlace JPEG -colorspace RGB {$filename}");
+				break;
+			case 'png':
+				exec("convert {$filename} {$resize} -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 {$filename}");
+				break;
+		}
+	}
+}
+
+2) использование
+$this->load->model('tool/image');
+$this->model_tool_image->optimize($filename);

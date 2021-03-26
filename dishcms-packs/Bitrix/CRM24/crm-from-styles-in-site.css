@@ -1,0 +1,36 @@
+/** CRM Web-Forms */
+[data-bx-form-popup-close] {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    display: block;
+    width: 50px !important;
+    height: 50px !important;
+    line-height: 46px;
+    text-align: center;
+    font-size: 2em;
+    background: transparent !important;
+}
+[data-bx-form-popup-close]:hover {
+    background: #ed1c24 !important;
+}
+[data-bx-form-popup-close] > svg > path {
+    stroke: #000 !important;
+}
+[data-bx-form-popup-close]:hover > svg > path {
+    stroke: #fff !important;
+}
+@media (min-width: 490px) {
+    [data-bx-form-popup-cont] {
+        min-width: 490px !important;
+    }
+}

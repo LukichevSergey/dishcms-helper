@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>JShopping Filters</name>
+    <author>KONTUR</author>
+    <version>1.0.0</version>
+    <description>Фильтр товаров для модуля JShopping</description>
+    <files>
+        <filename>mod_kontur_jshopping_filters.xml</filename>
+        <filename module="mod_kontur_jshopping_filters">mod_kontur_jshopping_filters.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+		<filename>router.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+    </files>
+    <config>
+    </config>
+</extension>

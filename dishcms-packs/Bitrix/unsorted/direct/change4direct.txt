@@ -1,0 +1,32 @@
+﻿1) копируем класс /bitrix/php_interface/include/referer.php
+
+2) добавляем в /bitrix/php_interface/init.php
+//Автолоадим классы by Spawn
+CModule::AddAutoloadClasses(
+	'',
+	array(
+		'CMyUTM' => '/bitrix/php_interface/include/referer.php', //Работа с метками utm и прч
+	)
+);
+
+3) Примеры
+
+3.1) Пример класса Битрикса
+<? 
+//Новое (класс подключается в init.php)
+$arRef = CMyUTM::GetSource();
+//if($arRef['clid'] == 'Директ' || ($arRef['first'] == 'Директ' && !$arRef['clid'])) //показываем если хоть раз с директа
+if($arRef['clid'] == 'Директ') //показываем только если в этот раз с директкта
+   $phone = '239-00-27';
+else
+   $phone = '319-00-19';
+?>
+
+3.2) Пример с cookies
+<?php
+if(isset($_GET['yclid']) && is_numeric($_GET['yclid'])) {
+    setcookie('is-yclid-phone', 1, 0, '/');
+    $isYclidPhone=true;
+} else $isYclidPhone=isset($_COOKIE['is-yclid-phone']);
+$phone=$isYclidPhone ? '(391) 219-23-01' : '(391) 219-99-95';
+?>

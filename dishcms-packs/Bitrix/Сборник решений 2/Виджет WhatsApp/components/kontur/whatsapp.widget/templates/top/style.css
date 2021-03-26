@@ -1,0 +1,28 @@
+@keyframes whatsApp {
+  from {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+.whats-up-fixed {
+  display: block;
+  position: fixed;
+  z-index: 1000000;
+  right: 15px;
+  top: 70px;
+  animation: whatsApp 1.5s infinite ease-in-out;
+}
+@media (min-width: 1200px) {
+  .whats-up-fixed  {
+    right: 80px;
+    top: 70px;
+  }
+}

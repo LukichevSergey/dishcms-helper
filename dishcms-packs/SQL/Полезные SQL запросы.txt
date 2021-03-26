@@ -1,0 +1,36 @@
+Получение списка полей таблицы
+SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'my_database_name' AND TABLE_NAME = 'my_table_name';
+
+Добавление нового пользователя
+Ограниченные права
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP ON expenses.* TO 'username'@'localhost';
+Полные права
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' WITH GRANT OPTION;
+
+Шаблон создания базы данных
+CREATE DATABASE `` CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+FLUSH PRIVILEGES;
+
+Выборка всех вложенных категорий.
+select c.id from `category` as c
+join `category` as `cc` on (`cc`.`id`=:id)
+where (c.root=cc.root) and (c.lft > cc.lft) and (c.rgt < cc.rgt);
+
+(((price BETWEEN :ycp2 AND :ycp3) AND (num_of_volleys BETWEEN :ycp4 AND :ycp5)) AND (`t`.`category_id`=:ycp7)) OR (`t`.`id`=`related_category`.`product_id`)
+
+mysqli.allow_persistent = On
+mysqli.max_persistent = unlimited
+allow_url_fopen=true; safe_mode=false;
+memory_limit = 128MB or more; max_execution_time = 60 or more; ability to run PHP via CLI.
+
+
+Получение размера таблиц в базе данных (https://stackoverflow.com/a/9620273)
+SELECT table_name AS `Table`, round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` FROM information_schema.TABLES WHERE table_schema = "имябазыданных";
+
+Получение уникального списка ЧПУ с инкрементом
+SET @i:=0; SET @a:=''; SELECT IF(@a=`alias`,CONCAT(`alias`,'-',@i:=@i+1),IF(@i:=0,0,@a:=alias)) AS a from mytable
+
+SET @i:=0; SET @a:=''; UPDATE `product` SET `alias`=IF(@a=`alias`,CONCAT(`alias`,'-',@i:=@i+1),IF(@i:=0,0,@a:=`alias`)) ORDER BY `alias`;
+
+Получение всех дубликатов ссылок для проверки. select alias, count(alias) as c from product group by alias having c > 1

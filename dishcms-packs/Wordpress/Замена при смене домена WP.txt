@@ -1,0 +1,47 @@
+Замена при смене домена WP
+
+SELECT * FROM `wp_postmeta` WHERE meta_value like '%nazdorovi.tmweb.ru%'
+	
+SELECT * FROM `wp_postmeta` WHERE meta_value regexp '^http://nazdorovi.tmweb.ru'
+SELECT REPLACE(meta_value, 'nazdorovi.tmweb.ru', 'bani-nz.ru') FROM `wp_postmeta` WHERE meta_value regexp '^http://nazdorovi.tmweb.ru'
+UPDATE wp_postmeta SET meta_value=REPLACE(meta_value, 'nazdorovi.tmweb.ru', 'bani-nz.ru') WHERE meta_value regexp '^http://nazdorovi.tmweb.ru'
+	
+	
+SELECT * FROM `wp_postmeta` WHERE meta_value regexp 's:65:"http://nazdorovi\.tmweb\.ru'
+	
+SELECT * FROM `wp_postmeta` WHERE meta_value like '%s:37:"[your-name] <info@nazdorovi.tmweb.ru>%'
+UPDATE `wp_postmeta` SET meta_value = REPLACE(meta_value, 's:37:"[your-name] <info@nazdorovi.tmweb.ru>', 's:29:"[your-name] <info@bani-nz.ru>') WHERE meta_value like '%s:37:"[your-name] <info@nazdorovi.tmweb.ru>%'
+UPDATE wp_postmeta SET meta_value=REPLACE(meta_value, 's:65:"http://nazdorovi.tmweb.ru', 's:57:"http://bani-nz.ru') WHERE meta_value like '%s:65:"http://nazdorovi.tmweb.ru%'
+
+SELECT * FROM `wp_options` WHERE option_value like '%nazdorovi.tmweb.ru%'
+UPDATE wp_options SET option_value=REPLACE(option_value, 's:63:"http://nazdorovi.tmweb.ru', 's:55:"http://bani-nz.ru') WHERE option_value like '%s:63:"http://nazdorovi.tmweb.ru%'
+
+SELECT * FROM `wp_posts` WHERE guid regexp '^http://nazdorovi.tmweb.ru'
+UPDATE wp_posts SET guid=REPLACE(guid, 'http://nazdorovi.tmweb.ru', 'http://bani-nz.ru') WHERE guid regexp '^http://nazdorovi.tmweb.ru'
+	
+SELECT * FROM `wp_posts` WHERE ID like '%nazdorovi.tmweb.ru%' OR
+post_author like '%nazdorovi.tmweb.ru%' OR
+post_date like '%nazdorovi.tmweb.ru%' OR
+post_date_gmt like '%nazdorovi.tmweb.ru%' OR
+post_content like '%nazdorovi.tmweb.ru%' OR
+post_title like '%nazdorovi.tmweb.ru%' OR
+post_excerpt like '%nazdorovi.tmweb.ru%' OR
+post_status like '%nazdorovi.tmweb.ru%' OR
+comment_status like '%nazdorovi.tmweb.ru%' OR
+ping_status like '%nazdorovi.tmweb.ru%' OR
+post_password like '%nazdorovi.tmweb.ru%' OR
+post_name like '%nazdorovi.tmweb.ru%' OR
+to_ping like '%nazdorovi.tmweb.ru%' OR
+pinged like '%nazdorovi.tmweb.ru%' OR
+post_modified like '%nazdorovi.tmweb.ru%' OR
+post_modified_gmt like '%nazdorovi.tmweb.ru%' OR
+post_content_filtered like '%nazdorovi.tmweb.ru%' OR
+post_parent like '%nazdorovi.tmweb.ru%' OR
+guid like '%nazdorovi.tmweb.ru%' OR
+menu_order like '%nazdorovi.tmweb.ru%' OR
+post_type like '%nazdorovi.tmweb.ru%' OR
+post_mime_type like '%nazdorovi.tmweb.ru%' OR
+comment_count like '%nazdorovi.tmweb.ru%'
+
+
+UPDATE wp_posts SET post_content=REPLACE(post_content, 'nazdorovi.tmweb.ru', 'bani-nz.ru')

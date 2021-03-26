@@ -1,0 +1,13 @@
+1) Создание символьных ссылок для копий регионов папки /bitrix
+
+find /bitrix -type d -regextype posix-egrep -not -iregex '^.*/(cache|html_pages|stack_cache|managed_cache)$' -maxdepth 1 -exec ln -s '{}' \;
+find /bitrix -type f -maxdepth 1 -exec ln -s '{}' \;
+здесь /bitrix - путь к папке реальных файлов
+После удалить символьную ссылку /bitrix/~bitrix - в папке сайта региона
+
+2) Создание папок кэша
+mkdir ./cache ./html_pages ./stack_cache ./managed_cache
+
+3) Установка прав
+find -type d -exec chmod 0755 {} \;
+find -type f -exec chmod 0644 {} \;

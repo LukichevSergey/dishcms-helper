@@ -1,0 +1,87 @@
+Установка модуля menu (Меню)
+---------------
+I. Зависимости:
+---------------
+
+--------------------------
+II. Установка и Настройка:
+--------------------------
+!!! Закомментировать (отключить) модуль Gii.
+
+	1. В /protected/config/defaults.php
+	----------------------------------
+
+'aliases'=>array(
+	...
+	'menu'=>'application.modules.menu',
+),
+	
+'modules'=>array(
+	...
+	'menu',
+),
+
+'params'=>array(
+	'UrlManagerHelper' => array(
+		'modules' => array('menu', ...),
+	),
+	
+
+2. Файл protected/config/urls.php
+Добавить правило
+    'event'=>'site/events',
+------------------------------
+Интегрирование в старый дишман
+------------------------------
+    ---
+    1.1 \modules\admin\views\layouts\column2.php
+    ---
+	<?php $this->widget('\menu\widgets\menu\AciSortableMenuWidget', array('adminMode' => true, 'integrationMode'=>true)); ?>
+	
+    $this->widget('zii.widgets.CMenu', array(
+    	...
+    	'items'=>CmsMenu::getInstance()->adminMenu(true),
+    	...
+		
+    2. \modules\admin\views\layouts\main.php
+
+    <?php $menu = CmsMenu::getInstance()->adminMenu(false, true); ?> <----- Добавить параметры в вызов метода adminMenu()
+    <?php foreach($menu as $menuitem): ?>
+
+	3.1. Зайти в админку, выдаст ошибку "Не определено свойство "menu\models\Menu.parent_id"", 
+	затем еще раз обновить страницу, все должно быть нормально.
+	3.2. После этого перенести код виджета меню $this->widget('\menu\widgets\menu\AciSortableMenuWidget',...
+	под виджет $this->widget('zii.widgets.CMenu', ...
+	
+	4. В базе данных в таблице меню добавился новое поле "system". Установить в 1 для всех пунктов меню, которые являются 
+	системными (не должны отображаться на сайте, например Слайдер, Обратный звонок)
+
+----------------
+Using
+---------------
+Хлебные крошки
+
+<?php $this->widget('\menu\widgets\breadcrumbs\simpleBreadcrumbsWidget\SimpleBreadcrumbsWidget', array('cssClass'=>'breadcrumbs-classic', 'rootLimit'=>ModuleHelper::getParam('menu_limit', true))); ?>
+---
+/themes/../views/site/events.php
+<?php $this->widget('\menu\widgets\breadcrumbs\simpleBreadcrumbsWidget\SimpleWidget', array('breadcrumbs'=>array(
+	array('url'=>'/news', 'title'=>'Новости')
+))); ?>
+
+/themes/../views/site/event.php
+<?php $this->widget('\menu\widgets\breadcrumbs\simpleBreadcrumbsWidget\SimpleWidget', array('breadcrumbs'=>array(
+	array('url'=>'/news', 'title'=>'Новости'),
+	array('url'=>$this->createUrl('site/event', array('id'=>$event->id)), 'title'=>$event->title),
+))); ?>
+
+/themes/../views/site/page.php
+<?php if(!$this->isIndex()): ?>
+<?php $this->widget('\menu\widgets\breadcrumbs\simpleBreadcrumbsWidget\SimpleBreadcrumbsWidget', array('cssClass'=>'breadcrumbs-classic')); ?>
+<?php endif; ?>
+	
+-----	
+<?php $this->widget('\menu\widgets\menu\MenuWidget', array(
+	'plugin'=>'blank', 
+	'rootLimit'=>ModuleHelper::getParam('menu_limit', true),
+	'cssClass'=>'menu clearfix'
+)); ?>

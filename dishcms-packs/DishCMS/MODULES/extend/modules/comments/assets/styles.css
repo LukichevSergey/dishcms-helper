@@ -1,0 +1,7 @@
+@charset "UTF-8";
+.star-view {background: url(images/star.png); height:16px; display: inline-block;vertical-align: top;}
+.star-1 {width:18px;}
+.star-2 {width:36px;}
+.star-3 {width:54px;}
+.star-4 {width:72px;}
+.star-5 {width:90px;}

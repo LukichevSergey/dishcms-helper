@@ -1,0 +1,12 @@
+.btn-findoutprice {
+    padding: 7px 50px !important;
+    margin: 35px 0 10px !important;
+}
+.artables.gallery .btn-section-findoutprice {
+    position: relative;
+    top: 12px;
+}
+.artables.table .btn-section-findoutprice {
+    position: relative;
+    top: 12px;
+}

@@ -1,0 +1,39 @@
+.ykassa__paymenttypes {
+    align-items: baseline;
+    flex-direction: row;
+    djustify-content: space-around;
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    margin-top: 20px;
+}
+.ykassa__paymenttypes-header {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+.ykassa__paymenttypes-item {
+    display: inline-block;
+    padding-right: 10px;
+}
+.ykassa__paymenttypes-item img {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.ykassa__paymenttypes-type {
+    flex: 1 0 30%;
+    max-width: 30%;
+}
+.ykassa__paymenttypes-type:nth-child(n+4) {
+    margin-top: 40px;
+}
+
+.ykassa__paymenttypes-item img:hover {
+    opacity: 1;
+}

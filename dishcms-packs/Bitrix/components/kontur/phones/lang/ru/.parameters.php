@@ -1,0 +1,7 @@
+<?
+$MESS['KONTUR_PHONES_GROUP_PHONES_NAME'] = 'Номера телефонов';
+$MESS['KONTUR_PHONES_PHONE_NUMBER_1'] = 'Номер #1';
+$MESS['KONTUR_PHONES_PHONE_NUMBER_1_TEXT'] = 'Текст для номера #1';
+$MESS['KONTUR_PHONES_PHONE_NUMBER_2'] = 'Номер #2';
+$MESS['KONTUR_PHONES_PHONE_NUMBER_2_TEXT'] = 'Текст для номера #2';
+?>

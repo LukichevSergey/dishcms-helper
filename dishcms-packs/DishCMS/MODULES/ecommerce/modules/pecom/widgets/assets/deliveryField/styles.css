@@ -1,0 +1,25 @@
+.pecom__info.row {
+    font-size: 0.8em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 70%;
+    padding: 5px 5px 0;
+    background: #efefef;
+}
+
+.chosen-container-single .chosen-single div b {
+    background-position-y: 7px !important;
+}
+
+.chosen-container-single .chosen-single {
+    margin: 0.2em 0 0.5em 0 !important;
+    display: block !important;
+    font-size: 14px !important;
+    height: 34px !important;
+    font-family: Arial, sans-serif !important;
+}
+
+.chosen-container-single .chosen-single span {
+    top: 4px !important;
+    position: relative !important;
+}

@@ -1,0 +1,57 @@
+/** Product list in table */
+table.product-list {
+    margin: 0 0 20px;
+    width: 100%;
+}
+table.product-list td {
+	padding: 0;
+	text-align: center;
+}
+table.product-list td.product {
+	padding: 0;
+	min-height: 270px;
+	width: 168px;
+	border: 1px solid #ccc;
+	margin: 2px;
+}
+table.product-list td.product table {
+	width: inherit;
+}
+
+table.product-list td.product td {
+	padding: 3px;
+}
+
+table.product-list td.product td.img {
+    height: 120px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+table.product-list td.product td.img img {
+	max-height: 100%;
+    max-width: 100%;
+}
+table.product-list td.product td.title {
+    /* height: 20px; */
+}
+table.product-list td.product td.price {
+	height: 20px;
+    font-weight: bold;
+}
+table.product-list td.product td.to-cart-button {
+	height: 34px;
+    margin-bottom: 6px;
+}
+
+table.product-list td.product-empty {
+	display: none; 
+}
+
+
+#product-list-module .product-list .last {
+    margin: 0;
+}
+.product-list .row-separator {
+    height: 25px;
+    clear: left;
+}

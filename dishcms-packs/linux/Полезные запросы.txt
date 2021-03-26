@@ -1,0 +1,94 @@
+Поиск текста в файлах 
+find ./ -name '*.php' -type f -exec grep -il 'searchtext' {} +
+
+Поиск BOM в файлах 
+grep -rl `printf '^\xef\xbb\xbf'` *
+
+Множественный перенос файлов из папки на уровень выше
+find ./*/public_html/* | sed -e "p;s/public_html\///" | xargs -n2 mv
+
+Распаковка множества архивов
+find -type f -name "*.tar" -exec tar -xvf {} \;
+
+Отображение имен всех баз данных, при множестве сайтов
+find ./*/protected/config/db.php -exec sed -rn "s/^.*dbname=(.+)'.*$/\1/p" {} \;
+
+Получение запроса создания баз данных при множестве сайтов
+find ./*/protected/config/db.php -exec sed -rn "s/^.*dbname=(.+)'.*$/CREATE DATABASE \`\1\` CHARACTER SET utf8 COLLATE utf8_general_ci;/p" {} \;
+
+Архивирование каталогов в отдельные архивы
+find ./ -maxdepth 1 -type d -exec tar -czf {}.tar.gz {} \;
+
+Множественная распаковка gz файлов
+find -name "*.gz" -exec gunzip {} \;
+
+Замена текста в строке
+find ./path -exec sed -i -r "s/search/replace/g" {} \;
+
+Удаление файлов из папки assets и runtime
+find ./*/assets/* -exec rm -r {} \;
+find ./*/protected/runtime/* -exec rm -r {} \;
+
+Сколько места занимает папка на сервере
+du -s -B 1 mydir
+
+----------------------------------------------------------------------------------
+Массовая загрузка файлов
+1) Создать в папке на сервере http://source.example.com/myfiles/ файл .htaccess 
+Options +Indexes
+DirectoryIndex index.php
+
+2) Создать в папке http://source.example.com/myfiles/ файл index.php
+<?php
+$links=[
+    'http://source.example.com/myfiles/myfile1.tar.gz',
+    ... список ссылок с абсолютными путями
+];
+foreach($links as $link) echo "<a href=\"{$link}\">{$link}</a><br/>";
+
+3) Копирование файлов между серверами
+либо в папке на source сервере
+scp -r . dest@server:~/path/to/dest/folder
+
+в обратном порядке (не рекомендуется)
+Выполнить на сервере dest.example.com
+wget -r -np -k http://source.example.com/myfiles/
+
+
+4) Докачка файла через rsync
+rsync -P -e ssh myfile.tar me@example.com:~/public_html/myfile.tar
+----------------------------------------------------------------------------------
+
+
+МАССОВАЯ ОПТИМИЗАЦИЯ ИЗОБРАЖЕНИЙ (ImageMagick)
+find -type f -regextype posix-egrep -iregex '.*\.png$' -exec convert '{}' -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 {} \;
+find -type f -regextype posix-egrep -iregex '.*\.(jpg|jpeg)$' -exec convert '{}' -sampling-factor 4:2:0 -strip -quality 72 -interlace JPEG -colorspace RGB {} \;
+
+изменение размера только если изображение больше заданных параметров 1280x1024
+find -type f -regextype posix-egrep -iregex '.*\.(png|jpg|jpeg)$' -exec convert {} -resize 1280x1024\> {} \;
+
+find -type f -iname "*.jpg" -exec jpegoptim --strip-all --all-progressive -pm85 {} \;
+find -type f -iname *.png -print0 |xargs -0 optipng
+find -type f -iname *.png -print0 |xargs -0 optipng -o7 (very slow!!!)
+
+
+find -type f -regextype posix-egrep -iregex '.*\.png$' -exec optipng {} \;
+find -type f -regextype posix-egrep -iregex '.*\.(jpg|jpeg)$' -exec jpegoptim --strip-all --all-progressive -pm85 {} \;
+
+
+# watermark
+find -type f -regextype posix-egrep -iregex '.*\.(jpg|jpeg|png)$' -exec composite -dissolve 20% -gravity center watermark.png {} {} \;
+
+composite -dissolve 20% -geometry +20+20 -gravity SouthWest watermark.png file.jpg file_w.jpg
+
+
+# check cron log
+tail -f /var/log/syslog | grep CRON
+
+# миницирование скриптов (apt-get install yui-compressor)
+find -type f -name '*.js' -exec yui-compressor --type js --charset UTF-8 --nomunge -o {} {} \;
+find -type f -name '*.css' -exec yui-compressor --type css --charset UTF-8 --nomunge -o {} {} \;
+
+
+# удаление выбранных папок с файлами
+find . -type d -name "<маска имени папки>" -exec rm -rfv {} \;

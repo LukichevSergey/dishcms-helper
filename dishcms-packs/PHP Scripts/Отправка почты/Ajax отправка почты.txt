@@ -1,0 +1,64 @@
+
+'x2^s~M+dC7tPK+{jKf\}U,zH'jkS,~2B' - секретный ключ шифрования, необходимо генерить для каждой формы свой уникальный.
+
+Пример отправки почты по AJAX с дополнтельным кэшем валидации
+
+<form action="" class="example-form" obsubmit="return false">
+    <input type="text" name="phone" />
+    <button type="submit">Отправить</button>
+</form>
+<? $exampleFormHash=@openssl_encrypt(
+	json_encode(['email'=>'myemail@example.com']), 
+	'AES-256-CBC', 
+	date('dmY') . 'x2^s~M+dC7tPK+{jKf\}U,zH'jkS,~2B'
+); ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script type="text/javascript">$(document).ready(function() { 
+var $form=$(".example-form"), $phone=$form.find("[name='phone']");
+$phone.mask("+7 (000) 000-00-00", {placeholder:"+7 (___) ___-__-__"});
+$(document).on("click", $form.find(":submit"), function(e) {
+    if(!$phone.val().match(/[0-9]/) || !$phone.val().match(/^[0-9+\-() ]+$/m)) { $phone.addClass("error"); }
+    else { 
+    	$phone.removeClass("error"); 
+    	$.post("/ajax.php", {hash: "<?=$exampleFormHash?>", phone: $phone.val()}, function(r) {
+	    	if(r.success) { $form.html("Ваша заявка принята"); }
+		}, "json");
+    }
+    e.preventDefault(); 
+    return false;
+});});</script>
+
+/ajax.php
+
+<?php
+//ini_set('display_errors', 1);error_reporting(E_ALL);
+if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    $success=false;
+    if(!empty($_POST['hash']) && !empty($_POST['phone'])) {
+		$key='x2^s~M+dC7tPK+{jKf\}U,zH'jkS,~2B';
+		$hash=$_POST['hash'];
+		$phone=$_POST['phone'];
+		$email=null;
+		$date=new DateTime();
+		$oneday=new DateInterval('P1D');
+		$date->sub($oneday);
+		foreach([0,1,2] as $i) {
+			$data=@json_decode(openssl_decrypt($hash, 'AES-256-CBC', $date->format('dmY') . $key), true);
+			if(!empty($data['email'])) {
+				$email=$data['email'];
+				break;
+			}
+	        $date->add($oneday);
+		}
+	
+		if(!empty($email)) {
+			$success=@mail(
+				$email, 
+				'Новая заявка с сайта ' . $_SERVER['SERVER_NAME'], 
+				'Телефон: ' . htmlspecialchars($_POST['phone'])
+			);
+		}
+    }
+    echo json_encode(compact('success'));
+}
+

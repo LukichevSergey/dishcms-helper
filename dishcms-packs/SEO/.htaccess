@@ -1,0 +1,15 @@
+# multi-domains
+RewriteCond %{HTTP_HOST} !^www\.(.*)$ [NC]
+RewriteCond %{REQUEST_URI} ^/robots.txt$ [NC]
+RewriteCond %{HTTP_HOST} ^(.*\.?)example\.com$ [NC]
+RewriteRule ^(.*)$ /.seo/%1robots.txt [L]
+
+RewriteCond %{HTTP_HOST} !^www\.(.*)$ [NC]
+RewriteCond %{REQUEST_URI} ^/sitemap.xml$ [NC]
+RewriteCond %{HTTP_HOST} ^(.*\.?)example\.com$ [NC]
+RewriteRule ^(.*)$ /.seo/%1sitemap.xml [L]
+
+RewriteCond %{HTTP_HOST} !^www\.(.*)$ [NC]
+RewriteCond %{REQUEST_URI} ^/sitemap-index.xml$ [NC]
+RewriteCond %{HTTP_HOST} ^(.*\.?)example\.com$ [NC]
+RewriteRule ^(.*)$ /.seo/%1sitemap-index.xml [L]

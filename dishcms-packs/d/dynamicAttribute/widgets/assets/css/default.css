@@ -1,0 +1,50 @@
+.daw-wrapper {
+	
+}
+.daw-table {
+	width: 600px;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+}
+
+.daw-table th {
+	font-size: 11px;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	background: #F0F0F0;
+	padding: 2px;
+}
+
+.daw-thead-visible {
+	width: 1%;
+}
+.daw-thead-title {
+	width: 25%;
+}
+.daw-thead-value {
+	width: 100%;
+}
+.daw-thead-remove {
+	width: 1%;
+}
+
+.daw-inpt-visible {
+}
+.daw-inpt-title {
+	width: 99%;
+}
+.daw-inpt-value {
+	width: 99%;
+}
+
+
+.daw-btn-add {
+	font-size: 12px !important;
+	padding: 2px 5px !important;
+}
+.daw-btn-remove {
+	font-size: 12px !important;
+	padding: 2px 5px !important;
+}
+
+

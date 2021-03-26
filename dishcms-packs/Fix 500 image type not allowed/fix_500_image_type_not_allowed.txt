@@ -1,0 +1,10 @@
+1. Попробовать установить драйвер ImageMagick в defaults.php
+
+2. 
+\protected\extensions\image\CImageComponent::load()
+if(!is_file($image) || !filesize($image) || !exif_imagetype($image))
+	return null;
+
+				
+\protected\models\Product::checkSize()
+	|| $force) && exif_imagetype($path .DS. $fullImg)

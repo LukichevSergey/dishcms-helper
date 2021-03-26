@@ -1,0 +1,32 @@
+@font-face {
+	font-family: 'Conv_tenge';
+	src: url('../fonts/tenge/fonts/tenge.eot');
+	src: local('☺'), 
+             url('../fonts/tenge/fonts/tenge.ttf') format('truetype'), 
+             url('../fonts/tenge/fonts/tenge.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.tenge { 
+	font-family: 'Conv_tenge'; 
+	position: relative;
+	top: -1px;
+	font-size: 0.9em;
+
+}
+
+
+<span class="tenge">d</span>
+
+/// Admin CSS
+
+@font-face {
+	font-family: 'Conv_tenge';
+	src: url('/themes/template/fonts/tenge/fonts/tenge.eot');
+	src: local('☺'), 
+             url('/themes/template/fonts/tenge/fonts/tenge.ttf') format('truetype'), 
+             url('/themes/template/fonts/tenge/fonts/tenge.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.tenge { font-family: 'Conv_tenge'; }

@@ -1,0 +1,148 @@
+.pay-block{
+  max-width: 688px;
+}
+.pay-block__in{
+  border:1px solid #9f9f9f;
+  border-top-width: 0px;
+
+
+}
+.pay-block__in{
+    background-image: url('images/pay-back.jpg');
+    padding: 31px 68px 49px 20px;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+    -ms-justify-content: flex-end;
+    -moz-justify-content: flex-end;
+}
+.pay-block__position{
+  max-width: 340px;
+
+}
+
+
+.pay-block__h, div.pay-block__h{
+
+    font-size: 15px;
+
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    line-height: 1.333;
+    position: relative;
+    background-color: #df781f;
+    padding:13px 0px 11px 73px;
+}
+.pay-block__h::before{
+    content:'';
+    position: absolute;
+    left: 26px;
+    top: 10px;
+    width: 28px;
+    height: 28px;
+    background-image: url('images/pay-icon.png');
+}
+.pay-block__btn{
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    -moz-justify-content: center;
+  margin-bottom: 26px;
+
+}
+.pay-block__inputs{
+  margin-bottom: 24px;
+  width: 100%;
+
+
+}
+.pbi{}
+.pbi__item{
+    margin-bottom: 10px;
+    width: 100%;
+
+}
+.pbb{
+    -webkit-appearance:none;
+    border:none;
+    display: block;
+    outline: none;
+    text-transform: uppercase;
+    color:#ffffff;
+    width: 297px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 14px;
+    background-image: url('images/pbb.png');
+}
+.pbi__input{
+    width: 340px;
+    width: 100%;
+
+    padding: 5px 5px 6px 21px;
+    border:none;
+
+    border:1px solid #9f9f9f;
+}
+.pbi__input.error {
+    border: 1px solid #a94442;
+    background: rgba(169, 68, 66, 0.05);
+}
+.pay-block__privacy{
+  font-size: 13px;
+  padding-left: 55px;
+    padding-right: 20px;
+
+  color: rgb(193, 193, 193);
+  line-height: 1.538;
+  position: relative;
+
+
+}
+.pay-block__privacy::before{
+  content:'';
+  position: absolute;
+  left: 32px;
+  top: 1px;
+  width: 10px;
+  height: 13px;
+  background-image: url('images/pay-block__privacy.png');
+}
+@media screen and (max-width:1199px){
+  .pay-block__position{
+    max-width: 290px;
+  }
+  .pay-block__in{
+    padding-bottom: 29px;
+  }
+  .pbb{
+    background-position: center;
+  }
+}
+@media screen and (max-width:993px){
+  .pay-block__in{
+    padding-left: 15px;
+    padding-right: 15px;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    -moz-justify-content: center;
+    background-position: -150px top;
+  }
+  .pay-block__position{
+    width:100%;
+    max-width:100%;
+  }
+}
+@media screen and (max-width:568px){
+  .pay-block__in{
+    background-repeat: no-repeat;
+  }
+
+}

@@ -1,0 +1,34 @@
+/**
+ * Search form
+ */
+.search-wrapper {
+	float: right;
+	position: relative;
+	left: 10px;
+	top: -20px;
+	padding: 0px 20px 10px;
+}
+.search-wrapper input[type=text] {
+	width: 123px;
+	height: 21px;
+	font-size: 13px;
+	padding-right: 25px;
+	padding-left: 5px;
+	border-radius: 5px;
+	border: 1px solid #4C8580;
+	outline: none;
+}
+.search-wrapper input[type=submit] {
+	position: absolute;
+	cursor: pointer;
+	top: -1px;
+	right: 22px;
+	width: 20px;
+	height: 25px;
+	border: 0;
+	background: url(../images/srch.png) 50% 50% no-repeat;
+	width: 20px;
+}
+.search-wrapper input[type=submit]:focus {
+	outline: none;
+}

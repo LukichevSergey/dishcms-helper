@@ -1,0 +1,58 @@
+Пример дан для редиректа с без www на www.
+
+RewriteEngine On
+RewriteBase /
+
+# ---------------------------------
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule . - [E=htwww:yes]
+
+RewriteCond %{REQUEST_URI} ^/(.*)/$ 
+# Раскомментируйте и добавьте необходимое, если требуется 
+# отключить правило для некоторых ссылок
+#RewriteCond %{REQUEST_URI} !^/admin/ [NC] 
+RewriteRule . - [E=r301_1:yes]
+
+# Здесь вставляется блок генерируемый скриптом
+# /catalog/category/1 - старая ссылка
+# /my-category-sef-example - новая ссылка
+#
+RewriteCond %{REQUEST_URI} ^(/catalog/category/1)(.*|$) [NC]
+RewriteRule . - [E=r301_2:yes,E=rsef_tail:%2,E=rsef:/my-category-sef-example]
+RewriteCond %{REQUEST_URI} ^(/my-category-sef-example)(.*|$) [NC]
+RewriteRule . - [E=rsef_from:%1,E=rsef_tail:%2,E=rsef:/catalog/category/1]
+
+RewriteCond %{ENV:htwww} yes 
+RewriteCond %{ENV:r301_1} yes 
+RewriteCond %{ENV:r301_2} yes 
+RewriteCond %{ENV:rsef_tail} ^(.*)/$
+RewriteRule ^(.*)/$ %{ENV:rsef}%2 [L,R=301]
+
+RewriteCond %{ENV:htwww} yes 
+RewriteCond %{ENV:r301_1} yes 
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+RewriteCond %{HTTP_HOST} !^www\.(.+)$ [NC] 
+RewriteCond %{ENV:r301_1} yes 
+RewriteCond %{ENV:r301_2} yes 
+RewriteCond %{ENV:rsef_tail} ^(.*)/$
+RewriteRule ^(.*)/$ http://www.%{HTTP_HOST}%{ENV:rsef}%{ENV:rsef_tail} [L,R=301]
+
+RewriteCond %{HTTP_HOST} !^www\.(.+)$ [NC] 
+RewriteCond %{ENV:r301_2} yes 
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}%{ENV:rsef}%{ENV:rsef_tail} [L,R=301]
+
+RewriteCond %{ENV:htwww} !yes 
+RewriteCond %{ENV:r301_1} yes 
+RewriteRule ^(.*)/$ http://www.%{HTTP_HOST}/$1 [L,R=301]
+
+RewriteCond %{HTTP_HOST} !^www\.(.+)$ [NC] 
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [L,R=301]
+
+RewriteCond %{ENV:r301_2} yes
+RewriteRule ^(.*)$ %{ENV:rsef}%{ENV:rsef_tail} [L,R=301]
+# ---------------------------------
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php

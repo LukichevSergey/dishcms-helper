@@ -1,0 +1,60 @@
+DROP TRIGGER `update_cms_pages`;
+DROP TRIGGER `update_cms_catalog`;
+DROP TRIGGER `update_cms_catalog_items`;
+
+DELIMITER $$
+CREATE TRIGGER `update_cms_pages` BEFORE UPDATE ON `cms_pages`
+FOR EACH ROW BEGIN
+   SET new.`update_time`=NOW();
+END;
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER `update_cms_catalog` BEFORE UPDATE ON `cms_catalog`
+FOR EACH ROW BEGIN
+   SET new.`update_time`=NOW();
+   UPDATE `seo_router_category` SET `update_time`=NOW() WHERE `item_id`=old.`catalog_id`;
+END;
+
+CREATE TRIGGER `update_cms_catalog_items` BEFORE UPDATE ON `cms_catalog_items`
+FOR EACH ROW BEGIN
+   SET new.`update_time`=NOW();
+   UPDATE `seo_router_product` SET `update_time`=NOW() WHERE `item_id`=old.`catalog_items_id`;
+   UPDATE `seo_router_category` SET `update_time`=NOW() WHERE `item_id`=old.`catalog_id`;
+END;
+DELIMITER ;
+
+/*
+// время обновления сайта фиксированное в 01:05:32 каждый день.
+$lastDateTime=new DateTime();
+$lastDateTime->setTime(1, 5, 32);
+$LastModified_unix = (int)$lastDateTime->format('U'); // время последнего изменения страницы
+if(time() < $LastModified_unix) {
+    $lastDateTime->sub(new DateInterval('P1D'));
+    $LastModified_unix = (int)$lastDateTime->format('U');
+}
+$LastModified = gmdate("D, d M Y H:i:s \G\M\T", $LastModified_unix);
+$IfModifiedSince = false;
+if (isset($_ENV['HTTP_IF_MODIFIED_SINCE']))
+    $IfModifiedSince = strtotime(substr($_ENV['HTTP_IF_MODIFIED_SINCE'], 5));
+if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']))
+    $IfModifiedSince = strtotime(substr($_SERVER['HTTP_IF_MODIFIED_SINCE'], 5));
+if ($IfModifiedSince && $IfModifiedSince >= $LastModified_unix) {
+    header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
+}
+header('Last-Modified: '. $LastModified);
+*/
+
+public function sendLastModified($updateTime)
+{
+	$lastModified = gmdate("D, d M Y H:i:s \G\M\T", (int)$updateTime);
+	$IfModifiedSince = false;
+	if (isset($_ENV['HTTP_IF_MODIFIED_SINCE']))
+		$IfModifiedSince = strtotime(substr($_ENV['HTTP_IF_MODIFIED_SINCE'], 5));
+	if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']))
+		$IfModifiedSince = strtotime(substr($_SERVER['HTTP_IF_MODIFIED_SINCE'], 5));
+	if ($IfModifiedSince && $IfModifiedSince >= $updateTime) {
+		header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
+	}
+	header('Last-Modified: '. $lastModified);
+}

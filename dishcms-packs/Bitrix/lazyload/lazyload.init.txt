@@ -1,0 +1,19 @@
+php_interface/init.php
+AddEventHandler("main", "OnEndBufferContent", "lazyLoadOnEndBufferContent");
+
+function lazyLoadOnEndBufferContent(&$content)
+{
+	global $USER;
+	if(!$USER->IsAuthorized()) {
+		$content=preg_replace_callback(
+    	    '#<img([^>]*?) src="([^\s>]+)"([^>]*?)>#i', 
+        	function($m) {
+            	if(preg_match('#data-lazyload-disable#', $m[0]) || !preg_match('#^/upload/.*$#', $m[2])) {
+	                return $m[0];
+    	        }
+        	    return '<img'.$m[1].' src="/images/loading.gif" data-lazyload="1" data-src="'.$m[2].'"'.$m[3].'>';
+	        },
+    	    $content
+	    );
+	}
+}

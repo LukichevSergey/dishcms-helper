@@ -1,0 +1,4 @@
+<?
+$MESS['MYCOMPONENT_NAME'] = 'Оплата';
+$MESS['MYCOMPONENT_DESCRIPTION'] = 'Оплата';
+?>

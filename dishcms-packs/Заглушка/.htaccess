@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !(logo-kontur.jpg)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ blank-flange.html

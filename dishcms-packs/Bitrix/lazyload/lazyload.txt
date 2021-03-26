@@ -1,0 +1,66 @@
+Альтернативный скрипт (работает) https://appelsiini.net/projects/lazyload/
+window.addEventListener('DOMContentLoaded',function(e){
+    function loadjsfile(filename){
+        var fileref=document.createElement('script')
+        fileref.setAttribute("type","text/javascript")
+        fileref.setAttribute("src", filename)
+        document.getElementsByTagName("head")[0].appendChild(fileref);
+    }
+    window.lazyloadJqueryLoadedIntervalId=setInterval(function(){
+        if(typeof(jQuery)!="undefined") {
+            clearInterval(window.lazyloadJqueryLoadedIntervalId);
+            loadjsfile("//cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js");
+            window.lazyloadLazyLoadedIntervalId=setInterval(function(){
+                if(typeof(lazyload)!="undefined") {
+                    clearInterval(window.lazyloadLazyLoadedIntervalId);
+                    lazyload(jQuery("[data-lazyload]").toArray());
+                    setInterval(function(){lazyload(jQuery("[data-lazyload]").toArray());}, 1000);
+                }
+            }, 200);
+        }
+    }, 200);
+});
+
+Добавить скрипт (может не работать)
+window.addEventListener('DOMContentLoaded',function(e){
+    function loadjsfile(filename){
+        var fileref=document.createElement('script')
+        fileref.setAttribute("type","text/javascript")
+        fileref.setAttribute("src", filename)
+        document.getElementsByTagName("head")[0].appendChild(fileref);
+    }
+    window.lazyloadJqueryLoadedIntervalId=setInterval(function(){
+        if(typeof(jQuery)!="undefined") { 
+            clearInterval(window.lazyloadJqueryLoadedIntervalId);
+            loadjsfile("//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.7/jquery.lazy.min.js");
+            loadjsfile("//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.7/jquery.lazy.plugins.min.js");
+            window.lazyloadLazyLoadedIntervalId=setInterval(function(){
+                if(typeof(jQuery.lazy)!="undefined") {
+                    clearInterval(window.lazyloadLazyLoadedIntervalId);
+                    jQuery("[data-lazyload]").lazy();
+                    setInterval(function(){jQuery("[data-lazyload]").lazy();}, 1000);
+                }
+            }, 200);
+        }
+    }, 200);
+});
+
+php_interface/init.php
+AddEventHandler("main", "OnEndBufferContent", "lazyLoadOnEndBufferContent");
+
+function lazyLoadOnEndBufferContent(&$content)
+{
+	global $USER;
+	if(!$USER->IsAuthorized()) {
+		$content=preg_replace_callback(
+    	    '#<img([^>]*?) src="([^\s>]+)"([^>]*?)>#i', 
+        	function($m) {
+            	if(preg_match('#data-lazyload-disable#', $m[0]) || !preg_match('#^/upload/.*$#', $m[2])) {
+	                return $m[0];
+    	        }
+        	    return '<img'.$m[1].' src="/images/loading.gif" data-lazyload="1" data-src="'.$m[2].'"'.$m[3].'>';
+	        },
+    	    $content
+	    );
+	}
+}

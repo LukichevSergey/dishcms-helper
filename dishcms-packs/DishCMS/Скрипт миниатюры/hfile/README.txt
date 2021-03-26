@@ -1,0 +1,1 @@
+<img src="<?= HFile::thumb(strstr($data->fullImg, '?', true), 220, 165, 3600, !\Yii::app()->user->isGuest, false, true); ?>" />

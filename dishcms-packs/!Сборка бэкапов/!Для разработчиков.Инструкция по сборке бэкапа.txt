@@ -1,0 +1,78 @@
+﻿Инструкция по сборке бэкапа:
+1) !!! Удалить папку .git, если это репозитарий dishcms !!!
+2) Сайт копируется в папку public_html
+3) Yii Framework копируется в папку yii
+
+/index.php
+Проверить, чтобы были отключены YII_DEBUG и D_MODE_LOCAL
+
+/.gitignore
+закомментировать строку 
+#themes/*
+
+Файл дампа переименовать в database.sql и разместить в корень сайта
+Добавить код в самое начало файла /index.php
+------------------------------------------
+$installDataBaseFile = dirname(__FILE__) . '/database.sql';
+if (is_file($installDataBaseFile)) {
+    error_reporting(E_NONE);
+    ini_set('display_errors', 0);
+    set_time_limit(0);
+    $dbconfig = dirname(__FILE__) . '/protected/config/db.php';
+	echo 'Не обновляйте страницу, идет импорт данных в базу данных<br/>';
+    if ( is_file($dbconfig) ) {
+        $db = include($dbconfig);
+        if( isset($db['connectionString']) && isset($db['username']) && isset($db['password']) ) {
+            $dbhost = preg_replace('/^.*host=([^;]+);.*$/', '$1', $db['connectionString']);
+            $dbname = preg_replace('/^.*dbname=(.*)$/', '$1', $db['connectionString']);
+            $mysqli = new mysqli($dbhost, $db['username'], $db['password'], $dbname);
+            if (!$mysqli->connect_errno) {
+                $result = $mysqli->query('SHOW TABLES');
+                if($result->num_rows > 0) {
+                    echo '<b>ОШИБКА!</b> База данных содержит таблицы. Очистите базу данных перед установкой!';
+                }
+                else {
+                    exec("mysql -h {$dbhost} -u {$db['username']} " . ($db['password'] ? " -p {$db['password']}" : '') . " {$dbname} < {$installDataBaseFile}");
+
+                    if(!@unlink($installDataBaseFile)) {
+                        echo 'База данных успешно импортирована.<br/><b>ОШИБКА!</b> Файл /database.sql не был удален. Удалите файл вручную!';
+                    }
+                    else {
+                        header("HTTP/1.1 301 Moved Permanently");
+                        header('Location: /');
+                    }
+                }
+                exit;
+            }
+        }
+    }
+    echo 'Не удается подключиться к базе данных';
+    exit;
+}
+------------------------------------------
+
+/protected/config/defaults.php
+1) Проверить, чтобы была подключена библиотека GD
+'image' => array(
+    'driver'=>'GD',
+2) Добавить/установить параметр localauth в true
+	'params'=>array(
+		'localauth'=>true,
+3) Проверить, чтобы был закомментарен gii
+
+/protected/config/db.php
+Заменить данный файл файлом db.php в папке данной инструкции.
+
+/protected/config/local.db.php
+Проверить, чтобы был удален
+
+/protected/config/users.php
+Установить пароль для доступа. Устновленный пароль сообщить мендежеру.
+Рекомендуется: http://passwordsgenerator.net/
+Password Length: 10
+Include Symbols: No
+
+/protected/config/.gitignore
+закомментировать строку 
+#modules.php
+

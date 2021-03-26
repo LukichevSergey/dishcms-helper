@@ -1,0 +1,3 @@
+<? if(preg_match('#\bPAGEN_\d+\b#i', $_SERVER['QUERY_STRING'])): ?>
+    <link rel="canonical" href="https://<?=$_SERVER['SERVER_NAME']?><?=preg_replace('/\?.*$/', '', $_SERVER['REQUEST_URI'])?>" />
+<? endif; ?>

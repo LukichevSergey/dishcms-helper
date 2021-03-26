@@ -1,0 +1,5 @@
+$arResult["VARIABLES"]["SECTION_ID"]=CIBlockFindTools::GetSectionID(
+    $arResult["VARIABLES"]["SECTION_ID"],
+    $arResult["VARIABLES"]["SECTION_CODE"],
+    array("IBLOCK_ID" => $arParams["IBLOCK_ID"])
+);

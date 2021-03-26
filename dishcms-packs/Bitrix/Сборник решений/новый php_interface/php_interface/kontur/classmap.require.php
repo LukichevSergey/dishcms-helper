@@ -1,0 +1,22 @@
+<?
+$basePath=dirname(__FILE__) . '/';
+require_once($basePath . 'lib/main/data/cache.php');
+require_once($basePath . 'lib/main/entity/datamanager.php');
+require_once($basePath . 'lib/main/tools/data.php');
+require_once($basePath . 'lib/main/tools/model.php');
+require_once($basePath . 'lib/main/tools/file.php');
+require_once($basePath . 'lib/main/tools/html.php');
+require_once($basePath . 'lib/main/tools/request.php');
+require_once($basePath . 'lib/iblock/component/parameters.php');
+require_once($basePath . 'lib/iblock/type.php');
+require_once($basePath . 'lib/iblock/iblock.php');
+require_once($basePath . 'lib/iblock/property.php');
+require_once($basePath . 'lib/iblock/section.php');
+require_once($basePath . 'lib/iblock/element.php');
+require_once($basePath . 'lib/iblock/tools/file.php');
+require_once($basePath . 'lib/catalog/product.php');
+require_once($basePath . 'lib/catalog/sku.php');
+require_once($basePath . 'lib/sale/basket.php');
+require_once($basePath . 'lib/sale/order.php');
+require_once($basePath . 'lib/sale/buy1click.php');
+require_once($basePath . 'lib/sale/ajax/ajax_basket.php');

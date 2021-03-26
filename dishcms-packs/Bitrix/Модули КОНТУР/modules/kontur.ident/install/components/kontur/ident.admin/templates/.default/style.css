@@ -1,0 +1,24 @@
+.kontur-ident-admin-tickets-table .adm-list-table-cell .ticket-info-row {
+    line-height: 1.4em;
+}
+.kontur-ident-admin-tickets-table .adm-list-table-cell .ticket-info-row .label {
+    color: #3f4b54;
+    display: block;
+}
+.kontur-ident-admin-tickets-table .adm-list-table-cell .ticket-info-row .value {
+    display: block;
+    margin-bottom: 10px;
+    background: #ced6db;
+    padding: 3px 5px 1px;
+    border-radius: 3px;
+}
+.kontur-ident-admin-tickets-table .adm-list-table-cell .ticket-info-row .label:after {
+    content: ':';
+}
+.kontur-ident-admin-tickets-table .adm-list-table-top {
+    height: 1px;
+    padding: 0;
+}
+.kontur-ident-admin-tickets-table .adm-list-table-header .adm-list-table-cell:first-child {
+    width: 150px;
+}

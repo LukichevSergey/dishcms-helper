@@ -1,0 +1,4 @@
+1. product table
+alt_title
+link_title
+alias

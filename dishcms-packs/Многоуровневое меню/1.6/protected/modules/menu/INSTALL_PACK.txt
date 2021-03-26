@@ -1,0 +1,73 @@
+Установка модуля menu (Меню)
+---------------
+I. Зависимости:
+---------------
+
+--------------------------
+II. Установка и Настройка:
+--------------------------
+!!! Закомментировать (отключить) модуль Gii.
+
+	1. В /protected/config/defaults.php
+	----------------------------------
+
+'aliases'=>array(
+	...
+	'menu'=>'application.modules.menu',
+),
+	
+'import'=>array(
+	...
+	'application.components.behaviors.*',
+	'application.components.helpers.*',
+	'application.components.models.*',
+),
+
+'modules'=>array(
+	...
+	'menu',
+),
+
+// Для подключения правил разбора URL модуля перед выполнением CWebApplication::processRequest
+'onBeginRequest'=> array('UrlManagerHelper', 'onBeginRequest'),
+
+2. Файл protected/config/urls.php
+Добавить правило
+    'event'=>'site/events',
+------------------------------
+Интегрирование в старый дишман
+------------------------------
+    ---
+    1. \modules\admin\views\layouts\column2.php
+    ---
+	<?php $this->widget('\menu\widgets\menu\AciSortableMenuWidget', array('adminMode' => true, 'integrationMode'=>true)); ?>
+	
+    $this->widget('zii.widgets.CMenu', array(
+    	...
+    	'items'=>CmsMenu::getInstance()->adminMenu(true),
+    	...
+		
+
+    2. \modules\admin\views\layouts\main.php
+
+    <?php $menu = CmsMenu::getInstance()->adminMenu(false, true); ?> <----- Добавить параметры в вызов метода adminMenu()
+    <?php foreach($menu as $menuitem): ?>
+
+----------------
+Using
+---------------
+<?php $this->widget('\menu\widgets\breadcrumbs\simpleBreadcrumbsWidget\SimpleBreadcrumbsWidget', array('cssClass'=>'breadcrumbs-classic', 'rootLimit'=>ModuleHelper::getParam('menu_limit', true))); ?>
+
+---
+
+/themes/../views/site/page.php
+	<?php if(!$this->isIndex()): ?>
+	<?php $this->widget('\menu\widgets\breadcrumbs\simpleBreadcrumbsWidget\SimpleBreadcrumbsWidget', array('cssClass'=>'breadcrumbs-classic')); ?>
+	<?php endif; ?>
+	
+-----	
+<?php $this->widget('\menu\widgets\menu\MenuWidget', array(
+	'plugin'=>'blank', 
+	'rootLimit'=>ModuleHelper::getParam('menu_limit', true),
+	'cssClass'=>'menu clearfix'
+)); ?>

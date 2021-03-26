@@ -1,0 +1,238 @@
+[data-icon]:before {
+	font-family: 'fontello';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	//line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.transform (@transform) {
+	-webkit-transform: @transform;
+	-moz-transform: @transform;
+	-o-transform: @transform;
+	-ms-transform: @transform;
+	transform: @transform;
+}
+
+.transition (@transition) {
+	-webkit-transition: @transition;
+	-moz-transition: @transition;
+	-o-transition: @transition;
+	-ms-transition: @transition;
+	transition: @transition;
+}
+
+.box-shadow (@box-shadow) {
+	-webkit-box-shadow: @box-shadow;
+	-moz-box-shadow: @box-shadow;
+	box-shadow: @box-shadow;
+}
+
+.box-sizing (@box-sizing) {
+	-webkit-box-sizing: @box-sizing;
+	-moz-box-sizing: @box-sizing;
+	box-sizing: @box-sizing;
+}
+
+.grad (@color-1, @color-2) {
+	background: @color-1; /* Old browsers */
+	background: -moz-linear-gradient(top,@color-1 0%, @color-2 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@color-1), color-stop(100%,@color-2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  @color-1 0%,@color-2 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  @color-1 0%,@color-2 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  @color-1 0%,@color-2 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  @color-1 0%,@color-2 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@color-1', endColorstr='@color-2',GradientType=0 ); /* IE6-9 */
+}
+
+.icon {
+	font-family: 'fontello';
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+*:focus {
+  outline: 0;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-weight: inherit;
+}
+form, label, input, textarea {
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+}
+ol, ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+}
+img { border: 0 }
+
+.left  { float: left;  }
+.right { float: right; }
+.clr   { clear: both; }
+.clrh  { clear:both; display:none; }
+
+.clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.user_info_block {
+	border: 1px solid @newsColor
+}
+
+// ============== SLIDER ==============
+
+.bx-wrapper {
+	position: relative;
+	padding: 0;
+	*zoom: 1;
+}
+
+.bx-wrapper img {
+	max-width: 100%;
+	display: block;
+}
+
+.bx-wrapper .bx-loading {
+	min-height: 50px;
+	background: url(../images/slider/bx_loader.gif) center center no-repeat #fff;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+}
+
+// ====================== callback popup ======================
+
+#callback {
+	position: relative;
+	width: 290px;
+	display: inline-block;
+
+	form {
+		color: #fff;
+		.grad(@collBack, @collBack/3*2);
+		padding: 20px;
+		border-radius: 5px;
+		box-shadow: 0px 1px 3px rgba(0, 0, 0, 1);
+		.cbHead {
+			text-align: left;
+			.iconPhone {
+				display: inline-block;
+				vertical-align: middle;
+				width: 40px;
+				height: 40px;
+				background: url(../images/callback/icon-phone.png) center no-repeat #ddd;
+				border-radius: 4px;
+				box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+				margin-right: 20px;
+			}
+			p {
+				display: inline-block;
+				vertical-align: middle;
+				font-size: 17px;
+			}
+		}
+		input,
+		textarea {
+			padding: 0;
+			margin: 0;
+			outline: 0;
+			display: block;
+			width: 100%;
+			padding: 5px;
+			font-size: 17px;
+			box-sizing: border-box;
+			border-radius: 4px;
+		}
+		input[type="text"], textarea {
+			border:1px solid @collBack/3*2;
+			background: #fff;
+			color: #000;
+			margin: 20px 0;
+			font-size: 17px;
+			padding: 10px;
+		}
+		input[type="submit"] {
+			font-size: 17px;
+			border:0;
+			cursor: pointer;
+			color: #111;
+			padding: 8px;
+			.grad(#ccc, #aaa);
+			box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+
+			&:hover {
+				.grad(#ddd, #bbb);
+			}
+			&:active {
+				.grad(#eee, #ccc);
+			}
+		}
+		textarea {
+			height: 150px;
+			padding: 2px 5px !important;
+		}
+	}
+}
+
+.inpt-error {
+	border: 1px solid #f00 !important;
+}
+
+
+/* Events Page
+----------------------------------------------------------*/
+.events_page .event {
+	border-bottom: 1px solid @newsColor;
+	h2 {
+		color: @newsColor;
+	}
+	.more-info {
+		background: @newsColor;
+	}
+}
+
+
+/*Fotogallery
+----------------------------------------------------------*/
+
+.fotogallery_preview_box {
+	li {
+		.fotogallery_title {
+			background: @fotogallery_color;
+		}
+	}
+}
+
+.fotogallery_inner_box {
+	li {
+		.foto_wrap {
+			&:hover {
+				border-color: @newsColor;
+			}
+		}
+	}
+}

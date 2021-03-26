@@ -1,0 +1,54 @@
+-----------------------
+Установка модуля DOrder
+-----------------------
+Зависимости:
+1. Yii Framework (>=1.1.15)
+2. \AttributeHelper (>=1.0)
+3. \YiiHelper (>= 1.04)
+4. \AjaxHelper(>=1.0)
+5. \AssetHelper (>=1.0)
+6. \UrlManagerHelper (>=1.2)
+7. DCart module (на виджета действия оформления заказа) 
+\DCart\components\DCart \Yii::app()->cart
+8. \CmsCore::sendMail()
+
+Примечание:
+Если будут проблемы с кодировкой, установить в webroot/index.php mb_internal_encoding('utf-8');
+
+1. В конфигурации добавить модуль DOrder в раздел "modules" (/protected/config/defaults.php)
+Пример:
+	'modules'=>array(
+		...
+		'DOrder' => array(
+			'tableName' => 'dorder',
+			'frontendControllerAlias' => 'order'
+		),
+	),
+	
+2. Установить в конфигурации алиас.
+Пример:
+'aliases'=>array(
+	...
+	'DOrder' => 'application.modules.DOrder'
+),
+
+3.1. Для DishCMS  (/protected/config/defaults.php)
+Закомментарить:
+	'components'=>array(
+		...
+		'urlManager'=>array(
+			'urlFormat'=>'path',
+            'showScriptName'=>false,
+			//'rules'=>include(dirname(__FILE__).DS.'urls.php') <--- вот эту строку
+		),
+		
+3.2. Добавить модуль DOrder в параметр UrlManagerHelper/modules (/protected/config/defaults.php)
+Пример:
+'onBeginRequest'=> array('UrlManagerHelper', 'onBeginRequest'),
+'params'=>array(
+	'UrlManagerHelper' => array(
+		'modules' => array(..., 'DOrder'),
+		'defaultRules' => include(dirname(__FILE__).DS.'urls.php')
+	),
+
+4. Скопировать файлы из папки install модуля.

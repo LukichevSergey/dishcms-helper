@@ -1,0 +1,128 @@
+.search-products .products-list__img a {
+    height: 70px;
+}
+
+.search-products .products-list__img {
+    width: 70px;
+    float: left;
+}
+
+.search-products .products-list__item {
+    border: 0;
+    border-bottom: 1px solid #E6E6E6;
+    width: 100%;
+}
+.search-products .products-list__name {
+    font-size: 12px;
+    margin: 0;
+}
+.search-products .products-list__desc {
+    font-size: 10px;
+    text-align: left;
+    margin: 0;
+}
+
+
+
+.search-products .products-list__block_left {
+    width: 340px;
+    float: left;
+}
+.search-products .products-list__img {
+    position: relative;
+}
+.search-products .marker-list {
+    left: 40px;
+    top: 0;
+}
+.search-products .marker-list .marker {
+    width: 20px;
+    height: 20px;
+    font-size: 8px;
+    line-height: 19px;
+}
+
+.search-products .products-list__block_right {
+    width: 340px;
+    float: left;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.search-products .product-inner__control {
+    display: inline-block;
+    width: auto;
+}
+.search-products .product-inner__control_count {
+    width: 105px;
+}
+
+.search-products .products-list__img a {
+    height: 50px;
+}
+
+.search-products .products-list__img {
+    width: 70px;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.search-products .products-list__item {
+    border: 0;
+    border-bottom: 1px solid #E6E6E6;
+    width: 100%;
+    padding: 5px 5px 0 0;
+    margin: 0;
+}
+.search-products .products-list__item:hover {
+    border: 0;
+    border-bottom: 1px solid #E6E6E6;
+}
+.search-products .products-list__item:after {
+    opacity: 0;
+}
+.search-products .products-list__name {
+    font-size: 12px;
+    margin: 0;
+}
+.search-products .products-list__desc {
+    font-size: 10px;
+    text-align: left;
+    margin: 0;
+}
+
+.search-products .cart-count {
+/*    display: inline-block;
+    padding: 5px;
+    position: relative;
+    top: -5px; */
+    margin: 0 10px;
+}
+.search-products .products-list__button {
+    display: inline-block;
+    padding: 0;
+    margin-left: 10px;
+}
+.search-products .products-list__button a {
+    padding: 5px 10px;
+    font-size: 12px
+}
+.products-list__price i {
+    font-family: 'als_rublregular';
+}
+.search-products .products-list__price {
+    width: 70px;
+    text-align: left;
+    display: inline-block;
+    margin-left: 10px;
+}
+.search-products .products-list__price .price {
+    padding: 3px;
+}
+.search-products .search-list__link-all {
+    margin: 5px;
+    position: relative;
+    z-index: 99;
+}
+

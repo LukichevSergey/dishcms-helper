@@ -1,0 +1,34 @@
+Глобавльный Last-Modified по изменениям на всем сайте
+
+1) Добавить поля в таблицы update_time TIMESTAMP
+
+2) Создать триггеры BEFORE UPDATE с содержимым:
+SET NEW.update_time = CURRENT_TIMESTAMP;
+
+3) Добавить метод
+ public static function sendLastModified()
+    {
+        $productTime=\Yii::app()->db->createCommand('SELECT UNIX_TIMESTAMP(MAX(update_time)) FROM product')->queryScalar();
+        $categoryTime=\Yii::app()->db->createCommand('SELECT UNIX_TIMESTAMP(MAX(update_time)) FROM category')->queryScalar();
+        $pageTime=\Yii::app()->db->createCommand('SELECT UNIX_TIMESTAMP(MAX(update_time)) FROM page')->queryScalar();
+        $time=$productTime;
+        if($time < $categoryTime) $time=$categoryTime;
+        if($time < $pageTime) $time=$pageTime;
+
+        $LastModified_unix = $time; // время последнего изменения страницы
+		$LastModified = gmdate("D, d M Y H:i:s \G\M\T", $LastModified_unix);
+		$IfModifiedSince = false;
+		if (isset($_ENV['HTTP_IF_MODIFIED_SINCE']))
+			$IfModifiedSince = strtotime(substr($_ENV['HTTP_IF_MODIFIED_SINCE'], 5));  
+		if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']))
+			$IfModifiedSince = strtotime(substr($_SERVER['HTTP_IF_MODIFIED_SINCE'], 5));
+		if ($IfModifiedSince && $IfModifiedSince >= $LastModified_unix) {
+			header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
+			exit;
+		}
+		header('Last-Modified: '. $LastModified);
+    }
+
+
+4) Добавить вызов метода в настройку сайта 
+'onBeginRequest' => array('MyClass', 'sendLastModified'),

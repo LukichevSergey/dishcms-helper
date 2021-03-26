@@ -1,0 +1,19 @@
+<?php
+return [
+    'modules'=>[
+		'admin'=>[
+			'class'=>'\rpochta\modules\admin\AdminModule'
+		]	
+	],
+	'controllerMap'=>[
+        'calc'=>[
+			'class'=>'\rpochta\controllers\CalcController'
+		],
+        'api'=>[
+			'class'=>'\rpochta\controllers\ApiController'
+		],
+        'ops'=>[
+			'class'=>'\rpochta\controllers\OpsController'
+		]
+	]
+];

@@ -1,0 +1,23 @@
+<!--Указывается схема Product.-->
+<div itemscope itemtype="http://schema.org/Product">
+
+<!--В поле name указывается наименование товара.-->
+  <h1 itemprop="name">Iphone 6 plus 16 GB</h1>
+
+<!--В поле description дается описание товара.-->
+  <span itemprop="description">iPhone 6 не просто больше. Он лучше во всех отношениях. Больше, но при этом значительно тоньше. Мощнее, но при этом исключительно экономичный. Его гладкая металлическая поверхность плавно переходит в стекло нового HD-дисплея Retina, образуя цельный, законченный дизайн. Его аппаратная часть идеально работает с программным обеспечением. Это новое поколение iPhone, улучшенное во всём</span>
+
+<!--В поле image указывается ссылка на картинку товара.-->
+  <img src="http://imageexample.com/iphone6plus.jpg" itemprop="image"> 
+	, 'itemprop'=>'image'
+
+<!--Указывается схема Offer.-->
+  <div itemprop="offers" itemscope itemtype="http://schema.org/Offer"> 
+
+<!--В поле price указывается цена товара.-->
+    <span itemprop="price" content="">36990</span>
+
+<!--В поле priceCurrency указывается валюта.-->
+    <span itemprop="priceCurrency" content="RUB">RUB</span>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+-----------------------
+Установка модуля DCart
+-----------------------
+Зависимости:
+1. Yii Framework (>=1.1.15)
+2. \AttributeHelper (>=1.0)
+3. \YiiHelper (>= 1.04)
+4. \AjaxHelper(>=1.0)
+5. \ARHelper (>=1.0)
+6. \AssetHelper (>=1.0)
+7. \UrlManagerHelper (>=1.2)
+
+Примечание:
+Если будут проблемы с кодировкой, установить в webroot/index.php mb_internal_encoding('utf-8');
+
+1. Установить в конфигурации алиас. (/protected/config/defaults.php)
+Пример:
+'aliases'=>array(
+	...
+	'DCart' => 'application.modules.DCart'
+),
+
+2. В конфигурации подключить компонент. (/protected/config/defaults.php)
+
+Пример:
+// application components
+'components'=>array(
+	...
+	'cart' => array(
+    	'class' => '\DCart\components\DCart',
+		'extendKeys' => array('color', 'tsize'),
+		'attributeImage' => 'tmbImg',
+		'miniCartAttributes' => array('color', 'tsize'),
+		'cartAttributes' => array('categoryTitle', 'code', 'color', 'tsize'),
+		'attributes' => array(
+			'code',
+			'categoryId' => array(
+				'type' => 'relation',
+				'label' => 'Id категории',
+				'relation' => array(
+					'name' => 'category',
+					'attribute' => 'id'
+				)
+			),
+			'categoryTitle' => array(
+				'type' => 'relation',
+				'label' => 'Категория',
+				'relation' => array(
+					'name' => 'category',
+					'attribute' => 'title'
+				)
+			), 
+			'color'=> array(
+				'type' => 'fk', 
+				'label' => 'Цвет',
+				'relation' => array(
+					'name' => 'colors',
+					'attributeId' => 'id',
+					'attributeValue' => 'title'
+				)
+			),
+			'tsize'=> array(
+				'type'=>'fk',
+				'label' => 'Размер',
+				'relation' => array(
+					'name' => 'tsizes',
+					'attributeId' => 'id',
+					'attributeValue' => 'title'
+				)
+			)
+		)
+    ),
+)
+
+4.1. Для DishCMS  (/protected/config/defaults.php)
+Закомментарить:
+	'components'=>array(
+		...
+		'urlManager'=>array(
+			'urlFormat'=>'path',
+            'showScriptName'=>false,
+			//'rules'=>include(dirname(__FILE__).DS.'urls.php') <--- вот эту строку
+		),
+		
+4.2. Добавить модуль DCart в параметр UrlManagerHelper/modules (/protected/config/defaults.php)
+Пример:
+'onBeginRequest'=> array('UrlManagerHelper', 'onBeginRequest'),
+'params'=>array(
+	'UrlManagerHelper' => array(
+		'modules' => array('DListBoxAttribute', 'DCart', 'DOrder'),
+		'defaultRules' => include(dirname(__FILE__).DS.'urls.php')
+	),
+	
+5. Скопировать файлы из папки install модуля.

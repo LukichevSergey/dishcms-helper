@@ -1,0 +1,6 @@
+<?
+$MESS["KONTUR_IDENT_PARTNER_NAME"]="Kontur";
+$MESS["KONTUR_IDENT_MODULE_NAME"]="Интеграция с IDENT";
+$MESS["KONTUR_IDENT_MODULE_DESCRIPTION"]="Модуль интеграции с IDENT";
+$MESS["KONTUR_IDENT_INSTALL_TITLE"]="Установка модуля интеграции с IDENT";
+?>

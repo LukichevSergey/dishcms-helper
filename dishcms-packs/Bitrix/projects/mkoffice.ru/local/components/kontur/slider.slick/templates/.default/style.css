@@ -1,0 +1,9 @@
+.slick-prev:before, .slick-next:before {
+    color: #ff550e;
+}
+.slick-prev:before, .slick-next:before {
+    color: #ff550e;
+}
+.multiple-items .slide {
+    cursor: pointer;
+}

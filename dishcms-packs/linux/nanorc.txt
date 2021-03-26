@@ -1,0 +1,10 @@
+include "/usr/share/nano/html.nanorc"
+include "/usr/share/nano/php.nanorc"
+include "/usr/share/nano/css.nanorc"
+include "/usr/share/nano/java.nanorc"
+#set mouse
+set const
+set smooth
+set tabsize 4
+set autoindent
+set nowrap

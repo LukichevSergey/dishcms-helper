@@ -1,0 +1,46 @@
+Используя сочетание в конфигурации формы:
+'pageLink' => array(
+	'label' => 'Страница',
+	'type' => 'Hidden',
+	'rules' => array(
+		array('pageLink', 'required')
+	)
+),
+
+и скрипта в $(document).ready():
+$('.open-popup-link').on('click', function() {
+	$('#feedback_models_FeedbackModel_pageLink').val($(document).find('html > head > title').text().replace(/ +?-[^-]+$/g, ''));
+});
+
+Можно получать название страницы, с которой отправлена заявка.
+
+
+
+-------------------------
+Валидация формы с разными id у элементов (требуется для СЕО)
+
+afterValidate: function (form, data, hasError)
+{
+    $.post($(form).attr("action"), {"ajax":$(form).attr("id"), 'formId':$(form).attr("id"), 'feedback_models_FeedbackModel':{
+        name:$(form).find("[name='feedback_models_FeedbackModel[name]']").val(),
+        phone:$(form).find("[name='feedback_models_FeedbackModel[phone]']").val(),
+    }}, function(r){
+        if($.isEmptyObject(r)) {
+            $(form).find(".feedback-submit-button").hide();
+            $.post($(form).attr("action"), form.serialize(), function(json) {
+                $(form).find(".feedback-body").html(
+                    (json.message != undefined) ? json.message : ((json.success == true) ? FeedbackWidget.msgSuccess : FeedbackWidget.msgError)
+                );
+            }, "json");
+        }
+        else {
+            $(form).find(".inpt-error").removeClass("inpt-error");
+            for(var key in r) {
+                if(key.indexOf('feedback') === 0) {
+                    if(key=='feedback_models_FeedbackModel_name') $(form).find("[name='feedback_models_FeedbackModel[name]']").addClass("inpt-error");
+                    else if(key=='feedback_models_FeedbackModel_phone') $(form).find("[name='feedback_models_FeedbackModel[phone]']").addClass("inpt-error");
+                }
+            }
+        }
+    }, "json");
+}

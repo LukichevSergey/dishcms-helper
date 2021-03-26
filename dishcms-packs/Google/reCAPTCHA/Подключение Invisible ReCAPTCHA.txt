@@ -1,0 +1,31 @@
+<script src='https://www.google.com/recaptcha/api.js?render=explicit' async defer></script>
+<div class="privacy-policy"><label><input type="checkbox">Я подтверждаю свое согласие с <a href="/privacy-policy.html" target="_blank">политикой конфиденциальности</a></label></div>
+<button class="ripplelink g-recaptcha" id='recaptcha-1' type="submit">заказать звонок</button>
+
+if(!$(form).find(".privacy-policy :checkbox:checked").length) {
+	$(form).find(".privacy-policy").addClass("error");
+}
+else {
+	$(form).find(".privacy-policy").removeClass("error");
+    var $submit=$(form).find("button");
+	if(!$submit.is("[data-is-rendered=1]")) {
+		grecaptcha.render($submit.attr("id"), {
+			'sitekey' : "SECRET_KEY",
+			'callback' : function(token) {
+				$(form).find(".g-recaptcha-response").val(token);
+				$(form).submit();
+			},
+			'size': 'invisible'
+		});
+		$submit.attr("data-is-rendered", 1);
+		$submit.trigger("click");
+		return false;
+	}
+	$.post("/submit.php", $(form).serialize(), ...
+}
+
+/submit.php
+if(!isset($_POST["g-recaptcha-response"]) || !$_POST["g-recaptcha-response"]) {
+    echo 'Invalid CAPTCHA';
+    exit;
+}

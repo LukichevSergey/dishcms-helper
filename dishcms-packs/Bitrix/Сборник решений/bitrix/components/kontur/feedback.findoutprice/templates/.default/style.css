@@ -1,0 +1,76 @@
+.feedback__findoutprice {
+    margin-top: 50px;
+	width: 500px !important;
+}
+
+.findoutprice__product-image {
+    float: left;
+    margin-right: 20px;
+}
+.findoutprice__product-image img {
+    max-width: 230px;
+    max-height: 200px;
+}
+.findoutprice__product-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+.findoutprice__product_manufacturer {
+    font-size: 14px;
+    margin-top: 10px;
+}
+.findoutprice__product_manufacturer-title {
+    display: inline-block;
+}
+.findoutprice__product_manufacturer-title:after {
+    content: ':\0a0';
+}
+.findoutprice__product_manufacturer-value {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.findoutprice__form {
+    clear: both;
+}
+.findoutprice__form-item {
+    margin-top: 10px;
+    width: 50%;
+    float: left;
+}
+.findoutprice__form-item label .required {
+	color: red !important;
+}
+.findoutprice__form-item:nth-child(5) {
+    clear: both !important;
+
+}
+.findoutprice__form-item input[type="text"] {
+    width: 230px
+}
+.findoutprice__form .findoutprice__form-item:nth-child(5) textarea {
+    width: 480px !important;
+}
+.findoutprice__form-control {
+    clear: both;
+	text-align: center;
+}
+.findoutprice__form-control input {
+    font-size: 15px;
+    padding: 5px 20px !important;
+	margin-top: 10px;
+}
+
+.findoutprice__form-item.error label {
+    color: red !important;
+}
+.findoutprice__form-item.error input {
+    border: 1px solid red !important;
+}
+
+.feedback__findoutprice .success {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-top: 10px !important;
+}

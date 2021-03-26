@@ -1,0 +1,16 @@
+Для раздела администрирования
+
+ShopController.php
+$size=(int)A::get($_GET, 'size', D::cms('shop_product_page_size', 12));
+или
+$size=(int)A::get($_GET, 'size', A::get($_COOKIE, 'apsz',  D::cms('shop_product_page_size', 12)));
+setcookie('apsz', $size, 0, '/');
+
+_products.php
+<div class="page-size" style="text-align:right;margin-bottom:20px;">
+	Кол-во товаров на странице: <? 
+	foreach([6, 12, 40, 120, 320, 800, 99999] as $i=>$n) {
+		echo ($i?' | ':'') . \CHtml::link(($n==99999)?'Все':$n, '?size='.$n, ['style'=>($productDataProvider->getPagination()->pageSize==$n)?'font-weight:bold':'']);
+	}
+	?>
+</div>

@@ -1,0 +1,22 @@
+<?php
+return [
+	'modules'=>[
+		'admin'=>[
+			'class'=>'\cdek\modules\admin\AdminModule'
+		]	
+	],
+	'controllerMap'=>[
+		'default'=>[
+			'class'=>'\cdek\controllers\DefaultController'
+		],
+        'city'=>[
+			'class'=>'\cdek\controllers\CityController'
+		],
+        'calc'=>[
+			'class'=>'\cdek\controllers\CalcController'
+		],
+        'pvz'=>[
+			'class'=>'\cdek\controllers\PvzController'
+		]
+	]
+];

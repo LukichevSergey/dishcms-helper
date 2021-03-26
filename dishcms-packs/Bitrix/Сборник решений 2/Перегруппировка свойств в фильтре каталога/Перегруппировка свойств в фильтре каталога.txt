@@ -1,0 +1,97 @@
+Перегруппировка свойств в фильтре по значению на примере свойства Запчасти
+1) Подключить бибиотеки kontur
+2) Добавить в шаблон компонента bitrix.catalog в .parameters.php
+use Kontur\Core\Iblock\Component\Parameters;
+use Kontur\Core\Main\Tools\Data;
+
+Parameters::addParameter($arTemplateParameters, 'ZAPCHAST_GROUPS_COUNT', [
+    'NAME'=>'Количество групп в фильтре для параметра ЗАПЧАСТИ', 
+    'PARENT'=>'FILTER_SETTINGS',
+    'REFRESH'=>'Y'
+]);
+
+if(!empty($arCurrentValues['ZAPCHAST_GROUPS_COUNT'])) {
+    $zapchastValues=[];
+    $rs=\CIBlockPropertyEnum::GetList(array("SORT"=>"ASC", "VALUE"=>"ASC"), array('IBLOCK_ID'=>$arCurrentValues['IBLOCK_ID'], 'CODE'=>'ZAPCHAST'));
+    while($val=$rs->GetNext()) {
+	$zapchastValues[$val['ID']]=$val['VALUE'];
+    }
+    if(!empty($zapchastValues)) {
+        for($i=0; $i<$arCurrentValues['ZAPCHAST_GROUPS_COUNT']; $i++) {
+    	    Parameters::addParameter($arTemplateParameters, 'ZAPCHAST_GROUP_NAME_' . $i, [
+				'NAME'=>'Наименование группы #' . ($i+1) . ' для параметра ЗАПЧАСТИ', 
+				'PARENT'=>'FILTER_SETTINGS',
+			]);
+			Parameters::addParameter($arTemplateParameters, 'ZAPCHAST_GROUP_VALUES_' . $i, [
+				'NAME'=>'Значения, отображаемые в группе #' . ($i+1) . ' для параметра ЗАПЧАСТИ', 
+				'PARENT'=>'FILTER_SETTINGS',
+				'TYPE'=>'LIST',
+				'MULTIPLE'=>'Y',
+				'SIZE'=>20,
+				'VALUES'=>$zapchastValues
+			]);
+		}
+    }
+}
+
+3) Добавить в result_modifier.php шаблона компонента фильтра
+$arItems=[];
+$parentParams=$this->getComponent()->getParent()->arParams;
+if(!empty($parentParams['ZAPCHAST_GROUPS_COUNT'])) {
+	$zapchastPropertyCode='ZAPCHAST';
+	$zapchastGroupsCount=(int)$parentParams['ZAPCHAST_GROUPS_COUNT'];
+	$zapchastGroupNotOtherValues=[];
+	foreach($arResult['ITEMS'] as $itemId=>$arItem) { 
+		if($arItem['CODE'] == $zapchastPropertyCode) {
+			$arZapchastItems=[];
+			for($i=0; $i<$zapchastGroupsCount; $i++) {
+				if(!empty(!empty($parentParams['ZAPCHAST_GROUP_NAME_' . $i])) 
+					&& !empty($parentParams['ZAPCHAST_GROUP_VALUES_' . $i])) 
+				{
+					$values=$parentParams['ZAPCHAST_GROUP_VALUES_' . $i];
+					$arZapchastItem=$arItem;
+					$arZapchastItemValues=[];
+					foreach($arItem['VALUES'] as $id=>$arValue) {
+						if(in_array((string)$id, $values)) {
+							$arZapchastItemValues[$id]=$arValue;
+							$zapchastGroupNotOtherValues[]=$id;
+						}
+					}
+
+					if(!empty($arZapchastItemValues)) {
+						$arZapchastItem['NAME']=$parentParams['ZAPCHAST_GROUP_NAME_' . $i];
+						$arZapchastItem['~NAME']=$arZapchastItem['NAME'];
+						$arZapchastItem['VALUES']=$arZapchastItemValues;
+						$arZapchastItems[]=$arZapchastItem;
+					}
+				}
+			}
+			if(!empty($arZapchastItems)) {
+				$zapchastGroupOtherItem=null;
+				foreach($arZapchastItems as $arZapchastItem) {
+					$arItems[]=$arZapchastItem;
+					if(!$zapchastGroupOtherItem) {
+						$zapchastGroupOtherItem=$arZapchastItem;
+					}
+				}
+				$zapchastGroupOtherValues=[];
+				foreach($arItem['VALUES'] as $id=>$arValue) {
+					if(!in_array($id, $zapchastGroupNotOtherValues)) {
+						$zapchastGroupOtherValues[$id]=$arValue;
+					}
+				}
+				if(!empty($zapchastGroupOtherValues)) {
+					$zapchastGroupOtherItem['NAME']='Прочее';
+					$zapchastGroupOtherItem['~NAME']=$arZapchastItem['NAME'];
+					$zapchastGroupOtherItem['VALUES']=$zapchastGroupOtherValues;
+					$arItems[]=$zapchastGroupOtherItem;
+				}
+				unset($arResult['ITEMS'][$itemId]);
+			}
+		}
+	    else {
+			$arItems[]=$arItem;
+	    }
+	}
+}
+$arResult['ITEMS']=$arItems;

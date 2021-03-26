@@ -1,0 +1,58 @@
+Выгрузка в CSV для WooCommerce WordPress
+
+Плагин
+https://wordpress.org/plugins/woocommerce-csvimport/
+Документация по выгрузке
+https://www.templatemonster.com/help/ru/woocommerce-how-to-import-data-from-csv-files.html
+
+/shop/csv?export
+ShopController
+
+	protected function importDescendants($node, $path='')
+    {
+        $csv=[];
+                if($products=Product::model()->findAll(['condition'=>'category_id=:id', 'params'=>[':id'=>$node->id]])) {
+                    foreach($products as $product) {
+                        if($product->mainImg) $imageurl=$this->createAbsoluteUrl($product->getFullImg());
+                        else $imageurl='';
+                        $moreimgs=[];
+                        if($product->moreImages) {
+                            foreach($product->moreImages as $img) $moreimgs[]=$this->createAbsoluteUrl('/images/product/'.$img->filename);
+                        }
+                        $csv[]=[
+                            'nameproduct'=>trim($product->title), 
+                            'categoryproduct'=>preg_replace('/\s+/', ' ', ($path?($path.'->'):'').$node->title),
+                            'price'=>$product->price,
+                            'imageproduct'=>$imageurl,
+                            'moreimages'=>implode('|', $moreimgs),
+                            'description'=>$product->description
+                        ];
+                    }
+                }
+                if($categories=$node->descendants()->findAll()) {
+                    foreach($categories as $category) {
+                        $csv=array_merge($csv, $this->importDescendants($category, ($path?($path.'->'):'').$node->title));
+                    }
+                }
+        return $csv;
+    }
+    public function actionCsv()
+    {
+        if(isset($_GET['export'])) {
+            $roots=\Category::model()->roots()->findAll();
+            $csv=[['nameproduct', 'categoryproduct', 'price', 'imageproduct', 'moreimages', 'description']];
+            foreach($roots as $root) {
+                 $csv=array_merge($csv, $this->importDescendants($root));
+            }
+            $csvcontent=["nameproduct,categoryproduct,price,imageproduct,moreimages,description"];
+            foreach($csv as $row) $csvcontent[]=implode(',',$row);
+            $filename=date('YmdHis').'_export.csv';
+            $fp = fopen(Yii::getPathOfAlias('webroot.uploads').'/'.$filename, 'w');
+            foreach($csv as $fields) fputcsv($fp, $fields, ',');
+            fclose($fp);
+            echo '<pre>';
+            echo CHtml::link($filename, '/uploads/'.$filename);
+            die;
+        }
+    }
+

@@ -1,0 +1,1 @@
+Выгрузка YML. Настраивается вручную. HARDCODE. файл kontur_yml_run.php

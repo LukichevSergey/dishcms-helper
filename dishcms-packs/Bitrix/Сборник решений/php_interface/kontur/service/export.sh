@@ -1,0 +1,1 @@
+php-cgi -c /home/bitrix/www/bitrix/php_interface/kontur/service/php.ini -f /home/bitrix/www/bitrix/php_interface/kontur/service/excel_export.php

@@ -1,0 +1,43 @@
+.kontur-chekcprice-table-tagprice-list {
+    margin-bottom: 20px;
+}
+.kontur-chekcprice-table-tagprice-list td {
+    padding: 5px 10px;
+    border: 1px solid #c4ced2 !important;
+    font-size: 13px;
+}
+.kontur-chekcprice-table-tagprice-list p {
+    margin: 0;
+    font-size: 13px;
+}
+.kontur-chekcprice-table-tagprice-list td.product-with-offers-heading {
+    padding: 5px 10px;
+    font-weight: bold;
+}
+.kontur-chekcprice-table-tagprice-list td.product-with-offers-heading a {
+    font-weight: normal;
+}
+.kontur-chekcprice-table-tagprice-list td.offer-heading {
+    padding-left: 40px;
+}
+.kontur-chekcprice-table-tagprice-list tbody td:not(:first-child) {
+    width:15%;
+    text-align:center;
+}
+.kontur-chekcprice-table-tagprice-list tbody td:last-child {
+    width:10%;
+}
+.kontur-chekcprice-table-tagprice-list tr.even {
+    background: #f1f1f1;;
+}
+.kontur-chekcprice-table-tagprice-list thead th {
+    padding: 5px;
+    text-transform: uppercase;
+    border: 1px solid #c4ced2;
+    text-align: center;
+    background: #333;
+    color: #fff;
+}
+.kontur-checkprice-bottom-panel {
+    text-align: right;
+}

@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+.dcart-cart thead tr {
+	border-bottom: 1px solid #ccc;
+}
+
+.dcart-cart tr {
+	border-bottom: 1px solid #ccc;
+}
+
+.dcart-cart td {
+	border-right: 1px dotted #ccc;
+}
+
+.dcart-cart-info p {
+	margin: 0 !important;
+}
+.dcart-cart-price {
+	text-align: right;
+}
+.dcart-cart-delete {
+	text-align: center;
+}
+
+.dcart-cart-count input {
+	text-align: right;
+}
+
+.dcart-cart-info .dcart-cart-total-price {
+	
+}

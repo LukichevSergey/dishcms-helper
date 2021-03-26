@@ -1,0 +1,70 @@
+<?php
+return [
+    'class'=>'\crud\models\ar\accounts\models\Region',
+    'relations'=>[
+        'accounts_countries'=>[
+            'type'=>'has_many'
+        ]
+    ],
+    'config'=>[
+        'tablename'=>'accounts_regions',
+        'definitions'=>[
+            'column.pk',
+            'column.published',
+            'column.create_time',
+            'column.sort',
+            'column.title',
+        ],
+    ],
+    'buttons'=>[
+        'create'=>['label'=>'Добавить регион'],
+    ],
+    'crud'=>[
+        'breadcrumbs'=>[
+            'Пользователи'=>'/cp/crud/index?cid=accounts'
+        ],
+        'index'=>[
+            'url'=>'/cp/crud/index',
+            'title'=>'Регионы',
+            'gridView'=>[
+                'dataProvider'=>[
+                    'sort'=>['defaultOrder'=>'`sort`']
+                ],
+                'summaryText'=>'Регионы {start} - {end} из {count}',
+                'columns'=>[
+                    'column.id',
+                    'column.relation.accounts_countries',
+                    'common.ext.sort',
+                    [
+                        'name'=>'published',
+                        'header'=>'Активен',
+                        'type'=>'common.ext.published',
+                        'headerHtmlOptions'=>['style'=>'width:10%;text-align:center;white-space:nowrap;']
+                    ],
+                    'crud.buttons'
+                ]
+            ]
+        ],
+        'create'=>[
+            'url'=>'/cp/crud/create',
+            'title'=>'Новый регион',
+        ],
+        'update'=>[
+            'url'=>'/cp/crud/update',
+            'title'=>'Редактировать регион',
+        ],
+        'delete'=>[
+            'url'=>'/cp/crud/delete',            
+        ],
+        'form'=>[
+            'attributes'=>[
+                'published'=>'checkbox',
+                'sort'=>[
+                    'type'=>'number',
+                    'params'=>['htmlOptions'=>['class'=>'form-control w10']]
+                ],
+                'title',
+            ]
+        ]
+    ],
+];

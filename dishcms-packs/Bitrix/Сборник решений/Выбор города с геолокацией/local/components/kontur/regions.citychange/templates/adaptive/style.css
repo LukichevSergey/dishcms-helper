@@ -1,0 +1,126 @@
+.regions__changecity {
+    position: relative;
+}
+.regions__changecity-btn {
+    border-bottom: 1px dashed #1d2029;
+    cursor: pointer !important;
+}
+.regions__changecity-btn:hover {
+    color: #ff550e !important;
+    border-bottom: 1px dashed #ff550e !important;
+}
+.regions__changecity-popup {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    right: 10px;
+    top: 25px;
+    width: 400px;
+}
+
+.regions__changecity-popup-title {
+    background: #ff4c00;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 40px;
+    text-align: center;
+}
+.regions__changecity-popup-list-region-title {
+    float: left;
+    padding: 5px;
+    border: 1px solid #ccc;
+    width: 50%;
+}
+.regions__changecity-popup-list-region-title {
+    color: #000;
+    border-top: 0;
+}
+.regions__changecity-popup-list-region-title:hover {
+    background: #ff5a15 !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+.regions__changecity-popup-list-region-cities {
+    float: right;
+    width: 40%;
+    display: none;
+}
+.regions__changecity-popup-info-address {
+    color: #000;
+    padding: 3px;
+    text-align: left;
+}
+
+.regions__changecity-popup-list-region-cities ul li {
+    list-style: none !important;
+    padding: 5px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.regions__changecity-popup-list-region-cities ul li:hover {
+    color: #ff5a15;
+    cursor: pointer;
+}
+.regions__changecity-popup-info {
+    clear: both;
+    padding-top: 5px;    
+}
+.regions__changecity-popup-info-map {
+    width: 400px !important;
+    height: 250px;
+}
+.regions__changecity-popup-info-address {
+    color: #000;
+    padding: 3px;
+    text-align: left;
+}
+.regions__changecity-popup-list-region-cities li:before {
+    content: '';
+}
+.regions__changecity-popup-list-region-cities li.active {
+    color: #000;
+    font-weight: bold;
+}
+.regions__changecity-popup-list-region-title.active {
+    background: #e6e6e6;
+}
+
+.regions__changecity-popup-list-region-title.active + .regions__changecity-popup-list-region-cities {
+    display: block;
+}
+
+
+
+
+
+.regions__changecity-popup-lists {
+	display: flex;
+	box-sizing: border-box;
+}
+.regions__changecity-popup-lists *,
+.regions__changecity-popup-lists *:before,
+.regions__changecity-popup-lists *:after {
+	box-sizing: inherit;
+}
+.regions__changecity-popup-list {
+	width: 50%;
+}
+.regions__changecity-popup-list-region-title {
+	width: 100%;
+	float: none;
+}
+.regions__changecity-popup-list-region-title:before {
+	display: none;
+}
+.regions__changecity-popup-list-region-cities {
+	float: none;
+	width: 100%;
+}
+.regions__changecity-popup-list-region-cities:before {
+	display: none;
+}
+.regions__changecity-popup-list-region-cities.active {
+	display: block;
+}

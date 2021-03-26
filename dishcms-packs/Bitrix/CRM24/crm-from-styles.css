@@ -1,0 +1,216 @@
+.crm-webform-submit-button {
+  display: inline-block;
+  padding: 12px 30px;
+  margin-bottom: 0;
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  border-radius: 2px;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  outline: 0;
+}
+.crm-webform-submit-button:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.crm-webform-submit-button.disabled {
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: 0.65;
+  pointer-events: none;
+}
+.crm-webform-submit-button {
+  color: #ed1c24;
+  background-color: transparent;
+  border-color: #ed1c24;
+}
+.crm-webform-submit-button:focus {
+  color: #d51920;
+  background-color: transparent;
+  border-color: #d51920;
+}
+.crm-webform-submit-button:hover {
+  color: #d51920;
+  background-color: transparent;
+  border-color: #d51920;
+}
+.crm-webform-submit-button:active {
+  color: #be161d;
+  background-color: transparent;
+  border-color: #be161d;
+}
+.crm-webform-submit-button {
+  color: #fff !important;
+  background: #ed1c24 !important;
+  border-color: #ed1c24 !important;
+}
+.crm-webform-submit-button:hover, .crm-webform-submit-button:focus {
+  color: #fff !important;
+  border-color: #d51920 !important;
+  background: #d51920 !important;
+}
+.crm-webform-submit-button:active {
+  color: #fff !important;
+  border-color: #be161d !important;
+  background: #be161d !important;
+}
+.crm-webform-label {
+    display: none !important;
+}
+h2.crm-webform-header {
+    font-size: 2.4em;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+}
+.crm-webform-header-container > div {
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 22px;
+    font-variant-numeric: lining-nums;
+    -moz-font-feature-settings: "lnum";
+    -webkit-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
+}
+.crm-webform-header-container {
+    padding-bottom: 0;
+}
+.crm-webform-submit-button.crm-webform-submit-button-cancel {
+    opacity: 0.5 !important;
+}
+.crm-webform-submit-button.crm-webform-submit-button-cancel:hover {
+    opacity: 1 !important;
+}
+.crm-webform-fieldset {
+    padding-top: 40px !important;
+}
+.crm-webform-body {
+    padding: 0 20px;
+}
+.crm-webform-label-content input[type=text],
+.crm-webform-label-content input[type=email],
+.crm-webform-label-content input[type=tel] {
+    background: transparent !important;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: none none solid none;
+    border-width: 0 0 1px 0;
+    box-shadow: none;
+    padding: 15px 0;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+    top: 0 !important;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none !important;
+    border-radius: 0;
+    font-weight: normal;
+}
+.crm-webform-label-content input[type=text]:focus,
+.crm-webform-label-content input[type=email]:focus,
+.crm-webform-label-content input[type=tel]:focus {
+    border-color: rgba(12, 77, 162, 0.6);
+    outline: none;
+}
+.crm-webform-label-content input[type=tel] {
+    padding-left: 40px;
+}
+.crm-webform-label-content .crm-webform-input-label {
+    background: transparent;
+}
+
+.crm-webform-label-content {
+    background: transparent;
+    background-color: #fff;
+    color: #111;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 22px;
+    font-variant-numeric: lining-nums;
+    -moz-font-feature-settings: "lnum";
+    -webkit-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
+}
+::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: normal;
+  font-family: 'Open Sans', sans-serif;
+  opacity: 1;
+  font-size: 0.9em;
+}
+::-moz-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: normal;
+  font-family: 'Open Sans', sans-serif;
+  opacity: 1;
+  font-size: 0.9em;
+}
+:-moz-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: normal;
+  font-family: 'Open Sans', sans-serif;
+  opacity: 1;
+  font-size: 0.9em;
+}
+:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: normal;
+  font-family: 'Open Sans', sans-serif;
+  opacity: 1;
+  font-size: 0.9em;
+}
+placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-style: normal;
+  font-size: 0.9em;
+}
+
+.tooltip.crm-webform-tooltip-bottom-right {
+    top: -15px !important;
+}
+.crm-webform-error .crm-webform-input[type=tel]+input[type=hidden]+.tooltip {
+    opacity: 1;
+}
+.crm-webform-error .crm-webform-input[type=tel]+input[type=hidden]+.crm-webform-tooltip-bottom-right {
+    top: -38px;
+    right: 0;
+    left: auto;
+    margin: 5px 0 0 0;
+}
+.flexible-middle-width .content-wrap {
+    max-width: 470px !important;
+}
+.crm-webform-mini-cart-container {
+    display: none !important;
+}
+.crm-webform-field-product {
+   display: none !important;
+}

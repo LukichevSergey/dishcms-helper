@@ -1,0 +1,159 @@
+Добавление загрузки нескольких фотографий на примере Отзывов
+
+0) Добавить в базу данных "reviews" поле photo_hash
+
+1) Добавить правило (protected/config/urls.php)
+'site/upload/<hash>'=>'site/upload',
+
+2) Добавить действие загрузки (protected/controllers/SiteController)
+
+	//Загрузка и обрезка изображений
+    public function actionUpload($hash)
+    {   
+        $img_path = 'images/reviews_models_review';
+        //Заводим новую модель
+        $model = new \reviews\models\Review();
+        $result_data = array();
+
+        //Получаем файл из $_FILES
+        $model->photo_tmp = CUploadedFile::getInstanceByName('files[0]');
+
+        //Проводим валидацию файла, если всё ок идём дальше. Если нет пишем ошибку.
+        if ($model->validate(array('photo_tmp'))) {
+
+            //Получаем расширение.
+            $ext = $model->photo_tmp->getExtensionName();
+            //Получаем число, для имени картинки
+            $rand = substr(md5(microtime()),rand(0,26),12);
+
+            $result_data['img'] = $img_path . '/' .$hash . '_' . $rand.'.'.$ext;
+            $result_data['error'] = 0;
+            $result_data['filename'] = $hash . '_' . $rand.'.'.$ext;
+            //Сохраняем картинку (оригинал).
+            $model->photo_tmp->saveAs( $result_data['img'] );
+
+            echo json_encode($result_data);
+        } else {
+            $result_data['error'] = 1;
+            $result_data['errors'] = $model->getErrors()['photo_tmp'];
+            echo json_encode($result_data);//['files'][0];  
+
+        }
+    }
+
+3) Добавить загрузку изображений в форму (/protected/modules/reviews/widgets/views/new_review_form.php)
+
+use common\components\helpers\HHash;
+$model->photo_hash=HHash::u();
+...
+<?= $form->hiddenField($model, 'photo_hash'); ?>
+...
+ <div class="row">
+        <span class="btn btn-success fileinput-button">
+          <i class="glyphicon glyphicon-plus"></i>
+          <span>Загрузить фото...</span>
+
+          <!-- The file input field used as target for the file upload widget -->
+          <input id="fileupload" type="file" name="files[]">
+        </span>
+        <div id="file_error"></div>
+        <div id="progress" class="progress">
+          <div class="progress-bar progress-bar-striped"></div>
+        </div>
+        <div class="image_place"></div>
+    </div>
+    ...
+    <script type="text/javascript">
+$(document).ready(function(){
+    'use strict';
+    var url = '/site/upload/<?=$model->photo_hash?>';
+    $('#fileupload').fileupload({
+        url: url,
+        limitMultiFileUploads: 1,
+
+        dataType: 'json',
+        done: function (e, data) {
+            console.log(data.result);
+            if(data.result.error==1){
+                $('#file_error').html(data.result.errors[0])
+            }
+            else{
+                $('#reviews_models_Review_image').val($('#reviews_models_Review_image').val() ? $('#reviews_models_Review_image').val() + ',' + data.result.filename : data.result.filename);
+                $('.image_place').append('<img src="/'+data.result.img+'">');
+            }
+
+            $('#progress .progress-bar').removeClass('active');
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .progress-bar').addClass('active').css(
+                'width',
+                progress + '%'
+            );
+        }
+    });
+});
+</script>
+
+<script src="/js/jfileupload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/js/jfileupload/js/jquery.fileupload.js"></script>
+<script src="/js/jfileupload/js/jquery.fileupload-process.js"></script>
+<script src="/js/jfileupload/js/jquery.fileupload-audio.js"></script>
+<script src="/js/jfileupload/js/jquery.fileupload-video.js"></script>
+<script src="/js/jfileupload/js/jquery.fileupload-validate.js"></script>
+
+<link rel="stylesheet" href="/js/jfileupload/css/jquery.fileupload.css">
+
+<style type="text/css">
+
+.image_place img {
+    width: 130px;
+}
+
+.fileinput-button {
+    margin-bottom: 10px;
+}
+
+</style>
+
+
+4) Добавить в модель (/protected/modules/reviews/models/Review.php)
+ public $photo_tmp;
+ ...
+ ['photo_hash', 'safe'],
+ ['photo_tmp', 'file', 'types'=>'jpg, jpeg, gif, png', 'allowEmpty'=>true],
+ 
+5) Добавить отображение изображений в списке (админка) (/protected/modules/reviews/modules/admin/views/default/index.php)
+
+	[
+			    'name'=>'preview_text',
+			    'type'=>'raw',
+                'value'=>'$data->preview_text . "<br/>" . array_reduce(
+                    \common\components\helpers\HFile::getFiles(\Yii::getPathOfAlias("webroot.images.reviews_models_review")), function($html, $filename) use ($data) {
+                        if(strpos($filename, $data->photo_hash."_") === 0) {
+                            $html.=\CHtml::link(\CHtml::image("/images/reviews_models_review/".$filename, $filename, ["style"=>"max-height:50px;max-width:150px"]), "/images/reviews_models_review/".$filename, ["target"=>"_blank"]) . "&nbsp;";
+                        }
+                        return $html;
+                    }, "")'
+		    ],
+
+5) Добавить отображение изображений в форме редактирования (админка) (/protected/modules/reviews/modules/admin/views/default/_form_general.php)
+
+<? if($model->photo_hash): ?>
+<?$html=array_reduce(
+    \common\components\helpers\HFile::getFiles(\Yii::getPathOfAlias("webroot.images.reviews_models_review")), function($html, $filename) use ($model) {
+        if(strpos($filename, $model->photo_hash."_") === 0) {
+            $html.=\CHtml::link(\CHtml::image("/images/reviews_models_review/".$filename, $filename, ["style"=>"max-height:100px;max-width:300px"]), "/images/reviews_models_review/".$filename, ["target"=>"_blank"]) . "&nbsp;";
+        }
+        return $html;
+    }
+);?>
+<? if($html): ?>
+<br/>
+<strong>Прикрепленные фотографии</strong>
+<br/>
+<br/>
+<?= $html; ?>
+<? endif; ?>
+<? endif; ?>
+

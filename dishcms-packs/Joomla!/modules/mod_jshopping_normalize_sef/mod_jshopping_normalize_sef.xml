@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Нормализация ЧПУ товаров!</name>
+    <author>Kontur</author>
+    <version>1.0.0</version>
+    <description>Нормализация ЧПУ товаров.</description>
+    <files>
+        <filename>mod_jshopping_normalize_sef.xml</filename>
+        <filename module="mod_jshopping_normalize_sef">mod_jshopping_normalize_sef.php</filename>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+        <filename>tmpl/default.php</filename>
+		<filename>tmpl/index.html</filename>
+    </files>
+    <config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="btnjsoppingnormalize" type="note" label="Нормализовать ЧПУ товаров" description="MOD_JSHOPPING_NORMALIZE_SEF_BTN_NORMALIZE_DESCRIPTION" class="btn btn-small btn-success js-jshopping-normalize-goods-sef" />
+			</fieldset>
+		</fields>
+    </config>
+	<languages folder="language">
+        <language tag="ru-RU">ru-RU/ru-RU.mod_jshopping_normalize_sef.ini</language>
+	    <language tag="ru-RU">ru-RU/ru-RU.mod_jshopping_normalize_sef.sys.ini</language>
+    </languages>  
+</extension>

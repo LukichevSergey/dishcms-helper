@@ -1,0 +1,53 @@
+div.search{
+    background: url(/bitrix/templates/styles/images/search_area.png) 0 100% no-repeat;
+    float: left;
+    height: 28px;
+    position: relative;
+    width: 182px;
+}
+div.search input.search_submit{
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    height: 13px;
+    outline: none;
+    position: absolute;
+    right: 11px;
+    top: 8px;
+    width: 13px;
+}
+div.search input.search_text{
+    background: none;
+    border: 0;
+	color: #999999;
+    font-size: 12px;
+    left: 0;
+    margin: 0;
+    padding: 8px 0 8px 10px;
+    position: absolute;
+    top: 0;
+    width: 140px;
+}
+.search_box-qresults {
+    position: relative;
+}
+.search_box-qresults ul {
+    position: absolute;
+    top: 31px;
+    background: #fff;
+    z-index: 99;
+    border: 1px solid #2e353f;
+}
+.search_box-qresults ul li {
+    padding: 5px 5px 0;
+    line-height: 14px;
+    font-size: 10px;
+    height: 100%;
+    width: 100%;
+}
+.search_box-qresults ul li:hover {
+    background: #2e353f;
+    color: #fff;
+    cursor: pointer;
+} 

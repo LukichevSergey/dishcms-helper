@@ -1,0 +1,82 @@
+/********* aMenu required ***********/
+
+.amenu-widget-list {
+	margin:0px;
+	padding: 0px;
+	position: relative !important;
+	z-index: 999;
+}
+
+.amenu-widget-list:after {
+	content: "";
+	display: table;
+	clear: both; 
+}
+
+.amenu-widget-list li {
+	display: block;
+	position: relative !important;
+	float: left;
+	vertical-align: bottom;
+}
+* html .amenu-widget-list li {
+	width: 1px;
+}
+.amenu-widget-list li a {
+	display: block;
+	white-space: nowrap;
+}
+.amenu-widget-list ul {
+	display: none;
+	margin:0px;
+	padding: 0px;
+	position: absolute !important;
+	height: auto;
+}
+.amenu-widget-list ul li {
+	float: none;
+}
+/******** aMenu look *******/
+
+.amenu-widget-wrapper {
+	float: left;
+}
+.amenu-widget-list li {
+
+}
+.amenu-widget-list li.parent > a {
+	background: url(images/down_arrow.gif) no-repeat 92% 50%; 
+}
+.amenu-widget-list li a:link, .amenu-widget-list li a:visited {
+
+}
+.amenu-widget-list > li > a:hover, .amenu-widget-list > li > a.active {
+	text-decoration: underline;
+}
+
+.amenu-widget-list ul {
+
+}
+.amenu-widget-list ul li {
+	background-color: rgba(194,0,4,1);
+	border-bottom: 1px solid #fff;
+}
+
+.amenu-widget-list ul li:last-child {
+	border-bottom: none;
+}
+
+.amenu-widget-list ul li.parent > a {
+	background: url(images/right_arrow.gif) no-repeat 95% 50%; 
+}
+.amenu-widget-list ul li a:link, .amenu-widget-list ul li a:visited {
+	height: 30px;
+	line-height: 30px;
+	padding: 5px 40px 5px 20px;
+	border-left: none;
+}
+.amenu-widget-list ul li a:hover, .amenu-widget-list ul li a.active {
+	background-color: rgba(39, 6, 25, 0.31);
+	color: #fff;
+	text-decoration: none;
+}

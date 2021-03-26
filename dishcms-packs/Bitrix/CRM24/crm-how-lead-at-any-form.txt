@@ -1,0 +1,111 @@
+CRM Лиды из любой формы
+1) Установить приложение "Перехватчик — генератор лидов": https://www.bitrix24.ru/apps/?app=cn.interceptor#install
+2) Добавить скрипт в <head>
+<script src="https://b24go.com/form/v3/example.bitrix24.ru/form.js" async="" data-skip-moving="true"></script>
+src скрипта будет указано в приложении "Перехватчик"
+
+Пример (если форма отправляется по AJAX и не нужно сабмитить форму):
+2) Добавить в скрипт обработки формы
+$(document).trigger("crm.sendCompareForm");
+
+3) Добавить обработчик
+	$(document).on("crm.sendCompareForm", function(event) {
+        var $form=$("#e-form");
+        $form.find("#switch-type").append($.parseHTML('<input type="text" name="compare_list" value="" style="display:none"/>'));
+        $form.find("#switch-type a.btn-active").each(function(){
+            var $c=$form.find("[name='compare_list']");
+            $c.val($c.val() + ($c.val().length ? ", ": "") + $(this).text());
+        });
+
+        console.log('Form b24 - v3 - start submit');
+
+        var thisForm = $("#e-form");
+        var errorStatus = 0;
+        var ignoreStatus = 0;
+        var jsName = 'name';
+       var jsPhone = 'phone';
+        var jsEmail = 'email';
+        var jsYandex1 = '';
+        var jsYandex2 = '';
+        var jsGoogle1 = '';
+        var jsGoogle2 = '';
+        var jsGoogle3 = '';
+        var jsIgnore1 = 'e-form'.split(',');
+        var jsIgnore2 = ''.split(',');
+        var jsAction = 'N';
+
+        if (!thisForm.hasClass('modaration-b24go')) {
+
+            if (jsIgnore1['0'] != '') {
+                jQuery.each(jsIgnore1, function(indexIgn1, valueIgn1) {
+                    if (thisForm.attr('id') && (valueIgn1.trim() != '')) {
+                        if (thisForm.attr('id') == valueIgn1.trim()) {
+                            ignoreStatus = 1;
+                        }
+                    }
+                });
+            }
+
+            if (jsIgnore2['0'] != '') {
+                jQuery.each(jsIgnore2, function(indexIgn2, valueIgn2) {
+                    if (valueIgn2.trim() != '') {
+                        if (thisForm.hasClass(valueIgn2.trim())) {
+                            ignoreStatus = 1;
+                        }
+                    }
+                });
+            }
+
+            if ((jsIgnore1['0'] == '') && (jsIgnore2['0'] == '')) {
+                ignoreStatus = 1;
+            }
+
+            if (ignoreStatus == 1) {
+
+                thisForm.addClass('modaration-b24go');
+
+                var msg = jQuery(thisForm[0].elements).not('[type=password]').not('[type=hidden]').serialize();
+
+                console.log('Form b24 - v3 - form fields: ' + msg);
+
+                jQuery.ajax({
+                    type: 'POST',
+                    url: 'https://b24go.com/form/v3/kognitivnyetekhnologii.bitrix24.ru/save',
+                    data: msg,
+                    success: function(data) {
+
+                        console.log('Form b24 - v3 - server answer: ' + data);
+
+                        if (jQuery.parseJSON(data)['ERROR'] == '') {
+
+                            thisForm.find('button[type=submit]').attr('disabled', true).val('Отправлено');
+                            thisForm.find('input[type=submit]').attr('disabled', true).val('Отправлено');
+
+                            if (jsYandex1 && jsYandex2) {
+                                yaCounter.reachGoal('');
+                            }
+                            if (jsGoogle1 && jsGoogle2) {
+                                if (jsGoogle3) {
+                                    ga('send', 'event', jsGoogle1, jsGoogle2, jsGoogle3);
+                                } else {
+                                     ga('send', 'event', jsGoogle1, jsGoogle2);
+                                }
+                            }
+                        } else {
+                            thisForm.removeClass('modaration-b24go');
+                        }
+                    },
+                    error:  function(xhr, str){
+                          console.log(str);
+                    }
+                });
+
+                if (jsAction == 'Y') {
+                    event.preventDefault();
+                }
+            } else {
+                thisForm.addClass('modaration-b24go');
+            }
+
+        }
+	});

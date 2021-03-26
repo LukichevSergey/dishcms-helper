@@ -1,0 +1,16 @@
+.checkprice-button-list-box {
+    display: inline;
+    margin: 0 20px;
+    position: relative;
+    top: -2px;
+}
+.checkprice-button-list-box a {
+    color: #333;
+    font-size: 13px;
+    border-bottom: 1px dashed #333;
+    text-decoration: none;
+}
+.checkprice-button-list-box a:hover {
+    color: #54b948;
+    border-bottom: 1px dashed #54b948;
+}

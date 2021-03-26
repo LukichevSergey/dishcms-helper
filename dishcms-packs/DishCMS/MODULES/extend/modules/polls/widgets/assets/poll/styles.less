@@ -1,0 +1,65 @@
+.quiz {
+    &__col {
+        width: 100%;
+        max-width: 635px;
+    }
+    &__fieldset {
+        display: flex;
+        padding: 0;
+        margin-bottom: 14px;
+        flex-direction: column;
+        border: none;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &__fieldset-row {
+        display: flex;
+        max-width: 400px;
+
+        flex-wrap: wrap;
+		&.error {
+			border-top: 1px solid rgba(199, 71, 47, 0.4);
+		    padding-top: 10px;
+		    position: relative;
+			&:before {
+				content: "\041D \0435 \043E \0431 \0445 \043E \0434 \0438 \043C \043E  \0432 \044B \0431 \0440 \0430 \0442 \044C  \0445 \043E \0442 \044F  \0431 \044B  \043E \0434 \0438 \043D  \0432 \0430 \0440 \0438 \0430 \043D \0442";
+			    position: absolute;
+			    top: -15px;
+			    color: #c7472f;
+			    font-size: 11px;
+			}
+		}	
+    }
+    &__legend {
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    &__label {
+        padding-right: 25px;
+        margin-bottom: 12px;
+        line-height: 1.2;
+        &:before,
+        &:after {
+            top: 9px;
+        }
+        &:last-child {
+            margin: 0;
+        }
+        &_sz {
+            &_sm {
+                width: 33.33%;
+                white-space: nowrap;
+            }
+        }
+    }
+    &__label-btn {
+        margin-right: 8px;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    &__submit {
+        margin-top: 15px;
+    }
+}

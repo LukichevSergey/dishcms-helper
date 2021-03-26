@@ -1,0 +1,5 @@
+function cart_update_count(e){var $p=$(e.target).parents(".counter_number:first"),$c=$p.find(".counter_input"),c=+$c.val();
+if(isNaN(c)){c=1;}if((typeof e.data.n == "undefined")||isNaN(+e.data.n)){e.data.n=0;}c+=e.data.n;if(c < 1)c=1;$c.val(c);}
+$(document).on("change, keyup", ".counter_number .counter_input", {n:0}, cart_update_count);
+$(document).on("click", ".counter_number .counter_number_minus", {n:-1}, cart_update_count);
+$(document).on("click", ".counter_number .counter_number_plus", {n:1}, cart_update_count);

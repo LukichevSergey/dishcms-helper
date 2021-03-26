@@ -1,0 +1,12 @@
+/**
+ * DCart widgets style.
+ */
+@CHARSET "UTF-8";
+
+.dcart-propmt-error {
+	color: #f00;
+}
+
+.dcart-error-input {
+	border: 1px solid #f00;
+}

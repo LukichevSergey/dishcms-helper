@@ -1,0 +1,17 @@
+<?
+use Bitrix\Main\Localization\Loc;
+ 
+if(!check_bitrix_sessid()) return;
+
+Loc::loadMessages(__FILE__);
+
+if($errorException = $APPLICATION->GetException()) {
+    echo CAdminMessage::ShowMessage($errorException->GetString());
+} else {
+    echo CAdminMessage::ShowNote(Loc::getMessage('KONTUR_IDENT_STEP_INSTALLED'));
+}
+?>
+<form action="<?= $APPLICATION->GetCurPage(); ?>">
+  <input type="hidden" name="lang" value="<?= LANG; ?>" />
+  <input type="submit" value="<?= Loc::getMessage('KONTUR_IDENT_STEP_SUBMIT_BACK'); ?>">
+</form>

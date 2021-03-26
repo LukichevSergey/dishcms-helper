@@ -1,0 +1,96 @@
+----------------------------------
+Установка модуля DListBoxAttribute
+----------------------------------
+
+Внимание: Для инсталляции необходимо очистить папку runtime внутри модуля и сделать ее доступной для записи.
+
+Зависимости:
+
+Все хэлперы располагаются в /protected/components/helpers/
+
+1. Yii Framework (>=1.1.15)
+2. \AttributeHelper (>=1.0)
+3. \YiiHelper (>= 1.04)
+4. \AjaxHelper(>=1.0)
+6. \AssetHelper (>=1.0)
+7. \UrlManagerHelper (>=1.2)
+8. \HashHelper (>=1.0)
+9. \HtmlHelper (>=1.0)
+
+Модуль предназачен для добавления аттрибута, значения которого являются подмножеством списка значений.
+
+1. /protected/config/defaults.php
+В конфигурации добавить модуль в раздел "modules"
+	'modules'=>array(
+		...
+		'DListBoxAttribute' => array(
+			'allowAttributes' => array(
+				'<single attribute name>' => array(
+					'listTitle' => '<list title>'
+				),
+			)
+		)
+	),
+	
+	<single attribute name> - должен быть задан в нижнем регистре, может содержать символ "_"
+	
+Пример:
+'modules'=>array(
+	...
+	'DListBoxAttribute' => array(
+		'allowAttributes' => array(
+			'color' => array(
+				'listTitle' => 'Цвета'
+			),
+			'tsize' => array(
+				'listTitle' => 'Размеры'
+			),
+		)
+	)
+);
+	
+2.1. Для DishCMS  (/protected/config/defaults.php)
+Закомментарить:
+	'components'=>array(
+		...
+		'urlManager'=>array(
+			'urlFormat'=>'path',
+            'showScriptName'=>false,
+			//'rules'=>include(dirname(__FILE__).DS.'urls.php') <--- вот эту строку
+		),
+	
+2.2. Добавить модуль DListBoxAttribute в параметр UrlManagerHelper/modules (/protected/config/defaults.php)
+Пример:
+ 	'onBeginRequest'=> array('UrlManagerHelper', 'onBeginRequest'), 
+	'params'=>array(
+		'UrlManagerHelper' => array(
+			'modules' => array('DListBoxAttribute', 'DCart', 'DOrder'),
+			'defaultRules' => include(dirname(__FILE__).DS.'urls.php')
+		),
+		
+3. \protected\extensions\CmsMenu\CmsMenuHelper.php
+Добавить:
+if($item->type =='url') {	
+   	return '/admin/' . $item->options['url']; 
+} 
+
+в:
+public static function adminRoute(& $item)
+{
+	$route = '#';
+
+    if($item->type =='url') {	
+		return '/admin/' . $item->options['url']; 
+	} 
+        
+
+4. \protected\modules\admin\assets\css\style.css
+Необязательно, как пример, так как можно указать свой класс в параметрах к виджету. 
+Добавить класс стиля: 
+.listBox {
+	width: auto;
+	min-width: 200px;
+	max-width: 630px;
+}
+
+5. Скопировать файлы из папки install модуля.

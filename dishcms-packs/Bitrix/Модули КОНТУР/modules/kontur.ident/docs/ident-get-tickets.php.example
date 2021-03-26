@@ -1,0 +1,38 @@
+<?php
+// проверка обмена с IDENT
+
+define('IDENT_URL', 'http://example.local/ident/');
+define('IDENT_APIKEY', 'ecf719a0-cbd1-44e3-bf2b-7cd84e3794f1');
+define('LIMIT', 2);
+define('MAX_ITERATIONS', 5);
+define('PRINT_RESPONSE_RAW', 1);
+
+$dateTimeFrom=date('c', strtotime('-7 day'));
+$dateTimeTo=date('c');
+
+$iteration=0;
+do {
+    $response=file_get_contents(
+        rtrim(IDENT_URL, '/') . '/GetTickets?' /**/ . http_build_query([
+            'dateTimeFrom'=>$dateTimeFrom,
+            'dateTimeTo'=>$dateTimeTo,
+            'limit'=>LIMIT,
+            'offset'=>$iteration * LIMIT
+        ]) /**/, 
+        false, 
+        stream_context_create(['http'=>[
+            'method'=>'GET',
+            'header'=>'IDENT-Integration-Key: ' . IDENT_APIKEY
+        ]])
+    );
+    
+    $data=json_decode($response, true);
+    
+    echo "<pre><b>iteration #{$iteration}</b><br/>";
+    if(PRINT_RESPONSE_RAW) echo $response;
+    else print_r($data);
+    echo '</pre>';
+    
+    $iteration++;
+} 
+while(($iteration < MAX_ITERATIONS) && !empty($data) && (count($data) == LIMIT));

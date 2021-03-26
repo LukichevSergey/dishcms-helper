@@ -1,0 +1,25 @@
+public function actionResolveImages()
+{
+    $path = Yii::getPathOfAlias('webroot.images.product');
+
+    $products = Product::model()->findAll();
+
+    foreach ($products as $product) {
+        $extResolve = false;
+
+        $name = $product->id;
+
+        foreach(['jpg', 'png', 'gif'] as $ext) {
+            if (is_file($path .DS. $name .'.'. $ext)) {
+                $extResolve = $ext;
+
+                break;
+            }
+        }
+
+        if ($extResolve) {
+            $product->main_image = $product->id . '.' . $extResolve;
+            $product->save();
+        }
+    }
+}

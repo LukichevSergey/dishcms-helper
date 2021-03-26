@@ -1,0 +1,59 @@
+﻿# http to https
+if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ($_SERVER['HTTP_X_FORWARDED_PROTO'] != 'https')) {
+    header("HTTP/1.1 301 Moved Permanently");
+    header('Location: https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
+    exit();
+}
+
+# http to https
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect from www.
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+#RewriteCond %{HTTP_HOST} ^www\.example\.com$ [NC]
+#RewriteRule ^(.*)$ http://example.com/$1 [R=301,L]
+Redirect 301 /from /to
+
+# Redirect from /index.php to /
+# Код разместить в начале файла index.php:
+<?php
+if(preg_match('/^\/index.php(.*)$/i', $_SERVER['REQUEST_URI'])) {
+	header('Location: /');
+}
+
+
+# Правило блокировки инъекций через строку запросов.
+
+## Begin - Rewrite rules to block out some common exploits.
+# If you experience problems on your site block out the operations listed below
+# This attempts to block the most common type of exploit `attempts` to Joomla!
+#
+# Block out any script trying to base64_encode data within the URL.
+RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
+# Block out any script that includes a <script> tag in URL.
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+# Block out any script trying to set a PHP GLOBALS variable via URL.
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+# Block out any script trying to modify a _REQUEST variable via URL.
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+# Return 403 Forbidden header and show the content of the root homepage
+RewriteRule .* index.php [F]
+#
+## End - Rewrite rules to block out some common exploits.
+
+
+# Редирект общий для подкаталога
+function _redirect($from, $to, $all=0) {
+    $redirect=function($to) { 
+    	header("HTTP/1.1 301 Moved Permanently");
+    	header('Location: '.$to); 
+    	die(); 
+    };
+    if(($all !== 0) && preg_match('/^'.str_replace('/','\/', $from).'(.*)$/i', $_SERVER['REQUEST_URI'], $matches)) $redirect($to.$matches[1]);
+    elseif($_SERVER['REQUEST_URI'] == $from) $redirect($to);
+}
+_redirect('/catalog/xolodilnyie-kameryi/', '/catalog/holodilnye-kamery-novosibirsk/', 1);
